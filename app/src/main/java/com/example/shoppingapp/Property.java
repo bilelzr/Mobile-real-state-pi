@@ -1,30 +1,45 @@
 package com.example.shoppingapp;
 
-public class Products {
+import android.content.Context;
+
+public class Property {
 
     private int id;
     private int image;
     private String name;
     private double price;
-    private String brand;
-    private int pieces;
+    private String location;
     private String description;
     private double discount;
     private float rating;
-    private int quantity;
 
-    public Products(int image, String name, double price, String brand, int pieces, String description, double discount, float rating) {
+    public Property(int image, String name, double price, String location, String description, double discount, float rating) {
         this.image = image;
         this.name = name;
         this.price = price;
-        this.brand = brand;
-        this.pieces = pieces;
+        this.location = location;
         this.description = description;
         this.discount = discount;
         this.rating = rating;
     }
 
-    public Products(int id) {
+    public Property(int image,String name , double price , String location ){
+        this.image=image;
+        this.name=name;
+        this.price=price;
+        this.location= location;
+    }
+
+    public Property(String name, double price, String location, String description, double discount, float rating) {
+        this.name = name;
+        this.price = price;
+        this.location = location;
+        this.description = description;
+        this.discount = discount;
+        this.rating = rating;
+    }
+
+    public Property(int id) {
         this.id = id;
     }
 
@@ -36,7 +51,7 @@ public class Products {
         this.rating = rating;
     }
 
-    public Products(int id, int image, String name, double price, float rating) {
+    public Property(int id, int image, String name, double price, float rating) {
         this.id = id;
         this.image = image;
         this.name = name;
@@ -44,7 +59,7 @@ public class Products {
         this.rating = rating;
     }
 
-    public Products(int image, String name, double price, double discount, float rating) {
+    public Property(int image, String name, double price, double discount, float rating) {
         this.image = image;
         this.name = name;
         this.price = price;
@@ -52,50 +67,41 @@ public class Products {
         this.rating = rating;
     }
 
-    public Products(int id, int image, String name, double price, String brand, int pieces, String description, double discount) {
+    public Property(int id, int image, String name, double price, String brand,  String description, double discount) {
         this.id = id;
         this.image = image;
         this.name = name;
         this.price = price;
-        this.brand = brand;
-        this.pieces = pieces;
+        this.location = brand;
         this.description = description;
         this.discount = discount;
     }
 
-    public Products(int id, int image, String name, double price, String brand, float rating, int quantity) {
+    public Property(int id, int image, String name, double price, String brand, float rating) {
         this.id = id;
         this.image = image;
         this.name = name;
         this.price = price;
-        this.brand = brand;
+        this.location = brand;
         this.rating = rating;
-        this.quantity = quantity;
     }
 
-    public Products(int image, String name, double price, String brand, float rating, int quantity) {
+    public Property(int image, String name, double price, String brand, float rating, int quantity) {
         this.image = image;
         this.name = name;
         this.price = price;
-        this.brand = brand;
+        this.location = brand;
         this.rating = rating;
-        this.quantity = quantity;
     }
 
-    public int getQuantity() {
-        return quantity;
-    }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
 
-    public Products(int image, String name, double price, String brand, int pieces, String description, double discount) {
+
+    public Property(int image, String name, double price, String brand,  String description, double discount) {
         this.image = image;
         this.name = name;
         this.price = price;
-        this.brand = brand;
-        this.pieces = pieces;
+        this.location = brand;
         this.description = description;
         this.discount = discount;
     }
@@ -132,21 +138,15 @@ public class Products {
         this.price = price;
     }
 
-    public String getBrand() {
-        return brand;
+    public String getLocation() {
+        return location;
     }
 
-    public void setBrand(String brand) {
-        this.brand = brand;
+    public void setLocation(String location) {
+        this.location = location;
     }
 
-    public int getPieces() {
-        return pieces;
-    }
 
-    public void setPieces(int pieces) {
-        this.pieces = pieces;
-    }
 
     public String getDescription() {
         return description;
@@ -162,5 +162,9 @@ public class Products {
 
     public void setDiscount(double discount) {
         this.discount = discount;
+    }
+
+    public static int getImageResourceId(Context context, String imageName) {
+        return context.getResources().getIdentifier(imageName, "drawable", context.getPackageName());
     }
 }

@@ -2,8 +2,6 @@ package com.example.shoppingapp;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.util.Xml;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,16 +9,15 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
 public class PurchasesAdapter extends BaseAdapter {
 
-    ArrayList<Products> purchases;
+    ArrayList<Property> purchases;
     Context context;
 
-    public PurchasesAdapter(ArrayList<Products> purchases, Context context) {
+    public PurchasesAdapter(ArrayList<Property> purchases, Context context) {
         this.purchases = purchases;
         this.context = context;
     }
@@ -31,7 +28,7 @@ public class PurchasesAdapter extends BaseAdapter {
     }
 
     @Override
-    public Products getItem(int i) {
+    public Property getItem(int i) {
         return purchases.get(i);
     }
 
@@ -54,9 +51,8 @@ public class PurchasesAdapter extends BaseAdapter {
         TextView tv_price = v.findViewById(R.id.tv_price_purchases);
         TextView tv_brand = v.findViewById(R.id.tv_brand_purchases);
         RatingBar rating = v.findViewById(R.id.rating_purchases);
-        TextView tv_quantity = v.findViewById(R.id.tv_quantity);
 
-        Products p = getItem(i);
+        Property p = getItem(i);
         if(p.getImage() != 0){
             img.setImageResource(p.getImage());
         }else{
@@ -64,9 +60,8 @@ public class PurchasesAdapter extends BaseAdapter {
         }
         tv_name.setText(p.getName());
         tv_price.setText(p.getPrice()+"$");
-        tv_brand.setText(p.getBrand());
+        tv_brand.setText(p.getLocation());
         rating.setRating(p.getRating());
-        tv_quantity.setText(p.getQuantity()+"");
 
         return v;
     }

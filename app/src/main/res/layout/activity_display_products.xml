@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DisplayProductsActivity">
+    tools:context=".DisplayPropertyActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -37,25 +37,6 @@
                     android:scaleY=".8"
                     android:stepSize="0.5" />
 
-                <TextView
-                    android:id="@+id/display_rating_number"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:fontFamily="cursive"
-                    android:text="1.5"
-                    android:textColor="#E91E63"
-                    android:textSize="25sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:fontFamily="cursive"
-                    android:text="  From 5"
-                    android:textColor="@color/black"
-                    android:textSize="25sp" />
 
             </LinearLayout>
 
@@ -65,7 +46,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="15dp"
-                android:fontFamily="casual"
+                android:fontFamily="sans-serif"
                 android:gravity="center"
                 android:padding="4dp"
                 android:text="product name"
@@ -113,16 +94,16 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="cursive"
-                    android:text="Brand : "
+                    android:fontFamily="sans-serif"
+                    android:text="Location : "
                     android:textColor="@color/black"
                     android:textSize="35sp" />
 
                 <TextView
-                    android:id="@+id/display_tv_brand"
+                    android:id="@+id/display_tv_location"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="casual"
+                    android:fontFamily="sans-serif"
                     android:text="Adidas"
                     android:textSize="30sp" />
 
@@ -138,19 +119,12 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="cursive"
+                    android:fontFamily="sans-serif"
                     android:text="Number Of Pieces : "
                     android:textColor="@color/black"
                     android:textSize="30sp" />
 
-                <TextView
-                    android:id="@+id/display_tv_pieces"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="cursive"
-                    android:text="12"
-                    android:textSize="24sp"
-                    android:textStyle="bold" />
+
 
             </LinearLayout>
 
@@ -160,7 +134,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="20dp"
-                android:fontFamily="casual"
+                android:fontFamily="sans-serif"
                 android:paddingStart="10dp"
                 android:paddingEnd="10dp"
                 android:gravity="center"
@@ -183,7 +157,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="cursive"
+                    android:fontFamily="sans-serif"
                     android:text="Quantity  "
                     android:textColor="@color/black"
                     android:textSize="26sp" />
@@ -193,6 +167,21 @@
                     android:layout_height="35dp"
                     android:background="@drawable/bg_spinner_num_count"
                     android:entries="@array/number"/>
+
+
+                <EditText
+                    android:id="@+id/display_get_datetime"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/bg_spinner_num_count"
+                    android:hint="Select Date and Time"
+                    android:inputType="none"
+                    android:focusable="false"
+                    android:onClick="showDateTimePickerDialog"/>
+
+
+
             </LinearLayout>
 
             <Button

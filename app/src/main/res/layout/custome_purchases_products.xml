@@ -54,14 +54,7 @@
                 android:textColor="@color/black"
                 android:textSize="24dp" />
 
-            <TextView
-                android:id="@+id/tv_quantity"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="casual"
-                android:text=""
-                android:textColor="#E91E63"
-                android:textSize="20dp" />
+  >
 
         </LinearLayout>
 

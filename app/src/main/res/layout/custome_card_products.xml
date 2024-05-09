@@ -76,16 +76,7 @@
                     android:text="Pieces : "
                     android:textSize="20dp"/>
 
-                <TextView
-                    android:id="@+id/tv_mun_pieces_card_products"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="12"
-                    android:textSize="20dp"
-                    android:textStyle="bold"
-                    android:textColor="@color/white"
-                    android:background="@drawable/bg_number_pieces"
-                    android:padding="4dp"/>
+
 
             </LinearLayout>
 

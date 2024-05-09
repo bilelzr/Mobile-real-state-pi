@@ -16,7 +16,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class ProfileActivity extends AppCompatActivity {
 
@@ -29,7 +28,7 @@ public class ProfileActivity extends AppCompatActivity {
     SharedPreferences shp_id;
     private static final int PICK_IMAGE_REQ_COD = 1;
     SharedPreferences.Editor shpEditor_id;
-    ShoppingDatabase db;
+    RealStateDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +53,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         int user_id = shp_id.getInt("user_id",0);
 
-        db = new ShoppingDatabase(this);
+        db = new RealStateDatabase(this);
 
         Users users = db.getUser(user_id);
         et_name.setText(users.getFullName());

@@ -11,10 +11,10 @@
     <item
         android:id="@+id/basket"
         android:icon="@drawable/ic_baseline_shopping_cart_24"
-        android:title="basket"/>
+        android:title="Appointment"/>
     <item
         android:id="@+id/products"
         android:icon="@drawable/ic_baseline_shopping_basket_24"
-        android:title="products"/>
+        android:title="Properties"/>
 
 </menu>

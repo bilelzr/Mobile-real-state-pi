@@ -5,14 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.text.InputType;
-import android.text.method.HideReturnsTransformationMethod;
-import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,7 +20,7 @@ public class LoginActivity extends AppCompatActivity {
     TextView error;
     Button btn_login;
     TextView btn_register;
-    ShoppingDatabase db;
+    RealStateDatabase db;
     SharedPreferences shp;
     SharedPreferences.Editor shpEditor;
     SharedPreferences shp_id;
@@ -47,7 +42,7 @@ public class LoginActivity extends AppCompatActivity {
         shp_id = getSharedPreferences("Preferences_id", MODE_PRIVATE);
         checkLogin();
 
-        db = new ShoppingDatabase(this);
+        db = new RealStateDatabase(this);
 
         btn_register.setOnClickListener(new View.OnClickListener() {
             @Override

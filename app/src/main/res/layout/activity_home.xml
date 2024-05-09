@@ -21,31 +21,32 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
-            android:src="@drawable/offer1" />
+            android:src="@drawable/offer1"
+            app:srcCompat="@drawable/house_3" />
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
-            android:src="@drawable/offer2" />
+            android:src="@drawable/house_4" />
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
-            android:src="@drawable/offer3" />
+            android:src="@drawable/house_5" />
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
-            android:src="@drawable/offer5" />
+            android:src="@drawable/house_2" />
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
-            android:src="@drawable/offer6" />
+            android:src="@drawable/house_2" />
 
     </ViewFlipper>
 

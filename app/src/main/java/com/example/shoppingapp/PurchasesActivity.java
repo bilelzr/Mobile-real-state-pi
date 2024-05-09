@@ -12,7 +12,7 @@ public class PurchasesActivity extends AppCompatActivity {
 
     ListView lv;
     PurchasesAdapter pa;
-    ShoppingDatabase db;
+    RealStateDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,12 +21,12 @@ public class PurchasesActivity extends AppCompatActivity {
 
         lv = findViewById(R.id.lv_purchases);
 
-        db = new ShoppingDatabase(this);
+        db = new RealStateDatabase(this);
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle("purchases");
 
-        ArrayList<Products> p = new ArrayList<>();
+        ArrayList<Property> p = new ArrayList<>();
         p = db.getAllProductsInPurchases();
         pa = new PurchasesAdapter(p,this);
         pa.notifyDataSetChanged();

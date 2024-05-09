@@ -16,10 +16,10 @@ import java.util.ArrayList;
 
 public class HomeAdabter extends RecyclerView.Adapter<HomeAdabter.ProductInHomeViewHolder> {
 
-    ArrayList<Products> products;
+    ArrayList<Property> products;
     OnRecyclerViewClickListener listener;
 
-    public HomeAdabter(ArrayList<Products> products, OnRecyclerViewClickListener listener) {
+    public HomeAdabter(ArrayList<Property> products, OnRecyclerViewClickListener listener) {
         this.products = products;
         this.listener = listener;
     }
@@ -34,7 +34,7 @@ public class HomeAdabter extends RecyclerView.Adapter<HomeAdabter.ProductInHomeV
 
     @Override
     public void onBindViewHolder(@NonNull ProductInHomeViewHolder holder, int position) {
-        Products p = products.get(position);
+        Property p = products.get(position);
 
         if(p.getImage() != 0){
             holder.img.setImageResource(p.getImage());

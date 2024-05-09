@@ -37,7 +37,7 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
-        ShoppingDatabase db = new ShoppingDatabase(this);
+        RealStateDatabase db = new RealStateDatabase(this);
 
         btn_register.setOnClickListener(new View.OnClickListener() {
             @Override
