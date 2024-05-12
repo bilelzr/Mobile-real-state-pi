@@ -7,6 +7,8 @@ import android.widget.ListView;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.RealEstateApp.models.Appointment;
+
 import java.util.ArrayList;
 
 public class AppointmentActivity extends AppCompatActivity {

@@ -13,6 +13,8 @@ import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.RealEstateApp.models.Property;
+
 import java.util.ArrayList;
 
 public class PropertyCardActivity extends AppCompatActivity {

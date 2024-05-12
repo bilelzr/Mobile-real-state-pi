@@ -5,23 +5,27 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:allowBackup="true"
-        android:usesCleartextTraffic="true"
         android:icon="@drawable/house_icon"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.ShoppingApp">
+        android:theme="@style/Theme.ShoppingApp"
+        android:usesCleartextTraffic="true">
         <activity
-            android:name="com.example.RealEstateApp.SettingActivity"
+            android:name=".Admin.AdminViewPropertyActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SettingActivity"
             android:exported="false"
-            android:parentActivityName="com.example.RealEstateApp.HomeActivity" />
+            android:parentActivityName=".HomeActivity" />
         <activity
-            android:name="com.example.RealEstateApp.HomeActivity"
+            android:name=".HomeActivity"
             android:exported="true" />
         <activity
-            android:name="com.example.RealEstateApp.SplashScreen"
+            android:name=".SplashScreen"
             android:exported="true"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
             <intent-filter>
@@ -31,32 +35,32 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.RealEstateApp.AppointmentActivity"
+            android:name=".AppointmentActivity"
             android:exported="true"
-            android:parentActivityName="com.example.RealEstateApp.HomeActivity" />
+            android:parentActivityName=".HomeActivity" />
         <activity
-            android:name="com.example.RealEstateApp.ProfileActivity"
+            android:name=".ProfileActivity"
             android:exported="true"
-            android:parentActivityName="com.example.RealEstateApp.HomeActivity" />
+            android:parentActivityName=".HomeActivity" />
         <activity
-            android:name="com.example.RealEstateApp.RegisterActivity"
+            android:name=".RegisterActivity"
             android:exported="false"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
         <activity
-            android:name="com.example.RealEstateApp.LoginActivity"
+            android:name=".LoginActivity"
             android:exported="true"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
         <activity
-            android:name="com.example.RealEstateApp.PropertyCardActivity"
+            android:name=".PropertyCardActivity"
             android:exported="false"
-            android:parentActivityName="com.example.RealEstateApp.MainActivity" />
+            android:parentActivityName=".MainActivity" />
         <activity
-            android:name="com.example.RealEstateApp.DisplayPropertyActivity"
+            android:name=".DisplayPropertyActivity"
             android:exported="false" />
         <activity
-            android:name="com.example.RealEstateApp.MainActivity"
+            android:name=".MainActivity"
             android:exported="true"
-            android:parentActivityName="com.example.RealEstateApp.HomeActivity" />
+            android:parentActivityName=".HomeActivity" />
     </application>
 
 </manifest>

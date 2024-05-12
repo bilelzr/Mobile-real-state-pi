@@ -9,6 +9,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import com.example.RealEstateApp.models.Appointment;
+import com.example.RealEstateApp.models.Property;
+import com.example.RealEstateApp.models.Users;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 

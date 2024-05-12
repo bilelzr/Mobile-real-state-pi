@@ -11,6 +11,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.RealEstateApp.Admin.AdminViewPropertyActivity;
+import com.example.RealEstateApp.models.Users;
 import com.google.android.material.textfield.TextInputEditText;
 
 public class LoginActivity extends AppCompatActivity {
@@ -96,12 +98,11 @@ public class LoginActivity extends AppCompatActivity {
                             }
 
                             if (user.getRole().equals("ADMIN")) {
-                                startActivity(new Intent(LoginActivity.this, PropertyAdmin.class));
-                                finish();
+                                startActivity(new Intent(LoginActivity.this, AdminViewPropertyActivity.class));
                             } else {
                                 startActivity(new Intent(LoginActivity.this, HomeActivity.class));
-                                finish();
                             }
+                            finish();
                         } else {
                             error.setVisibility(View.VISIBLE);
                         }

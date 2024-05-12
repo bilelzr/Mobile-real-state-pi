@@ -17,6 +17,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.RealEstateApp.models.Users;
+
 public class ProfileActivity extends AppCompatActivity {
 
     EditText et_name,et_gmail,et_phone;

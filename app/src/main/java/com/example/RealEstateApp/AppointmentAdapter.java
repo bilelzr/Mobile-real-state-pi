@@ -9,6 +9,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.RealEstateApp.models.Appointment;
+
 import java.util.ArrayList;
 
 public class AppointmentAdapter extends BaseAdapter {
@@ -41,8 +43,8 @@ public class AppointmentAdapter extends BaseAdapter {
     public View getView(int i, View view, ViewGroup viewGroup) {
 
         View v = view;
-        if(v==null){
-            v = LayoutInflater.from(context).inflate(R.layout.custome_appointment_products,null,false);
+        if (v == null) {
+            v = LayoutInflater.from(context).inflate(R.layout.custome_appointment_products, null, false);
         }
 
         ImageView img = (ImageView) v.findViewById(R.id.img_property_appointment);
@@ -52,17 +54,15 @@ public class AppointmentAdapter extends BaseAdapter {
         TextView tv_dateApointment = v.findViewById(R.id.tv_date_appointment_property);
 
         Appointment appointment = getItem(i);
-        if(appointment.getProperty().getImage() != 0){
+        if (appointment.getProperty().getImage() != 0) {
             img.setImageResource(appointment.getProperty().getImage());
-        }else{
+        } else {
             img.setImageResource(R.drawable.products);
         }
         tv_name.setText(appointment.getProperty().getName());
-        tv_price.setText(appointment.getProperty().getPrice()+"DT");
+        tv_price.setText(appointment.getProperty().getPrice() + "DT");
         tv_type.setText(appointment.getProperty().getType());
         tv_dateApointment.setText(appointment.getDate());
-
-
         return v;
     }
 }

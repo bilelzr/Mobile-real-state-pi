@@ -23,6 +23,8 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.RealEstateApp.models.Property;
+
 import java.util.Calendar;
 
 public class DisplayPropertyActivity extends AppCompatActivity {

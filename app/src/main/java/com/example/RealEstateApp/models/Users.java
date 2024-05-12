@@ -1,4 +1,4 @@
-package com.example.RealEstateApp;
+package com.example.RealEstateApp.models;
 
 public class Users {
 
