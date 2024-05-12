@@ -51,6 +51,7 @@ public class RealStateDatabase extends SQLiteOpenHelper {
     public static final String TB_CLM_USER_EMAIL = "user_email";
     public static final String TB_CLM_USER_PHONE = "user_phone";
     public static final String TB_CLM_USER_IMAGE = "user_image";
+    public static final String TB_CLM_USER_ROLE = "user_role";
 
     public RealStateDatabase(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
@@ -66,7 +67,7 @@ public class RealStateDatabase extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(createTables(TB_PROPERTY_DISCOUNT));
 
         sqLiteDatabase.execSQL("CREATE TABLE " + TB_USERS + " (" + TB_CLM_USER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT , " + TB_CLM_USER_NAME + " TEXT UNIQUE , " +
-                TB_CLM_USER_FULL_NAME + " TEXT , " + TB_CLM_USER_PASSWORD + " TEXT , " + TB_CLM_USER_EMAIL + " TEXT UNIQUE , " + TB_CLM_USER_PHONE + " TEXT , " + TB_CLM_USER_IMAGE + " TEXT );");
+                TB_CLM_USER_FULL_NAME + " TEXT , " + TB_CLM_USER_PASSWORD + " TEXT , " + TB_CLM_USER_EMAIL + " TEXT UNIQUE , " + TB_CLM_USER_PHONE + " TEXT , " + TB_CLM_USER_IMAGE + " TEXT , " + TB_CLM_USER_ROLE + " TEXT );");
 
 
         sqLiteDatabase.execSQL("CREATE TABLE " + TB_APPOINTMENTS + " (" + TB_CLM_ID + " INTEGER PRIMARY KEY AUTOINCREMENT , " + TB_CLM_IMAGE + " INTEGER , " +
@@ -294,6 +295,7 @@ public class RealStateDatabase extends SQLiteOpenHelper {
         values.put(TB_CLM_USER_EMAIL, user.getEmail());
         values.put(TB_CLM_USER_PHONE, user.getPhone());
         values.put(TB_CLM_USER_IMAGE, user.getUserImage());
+        values.put(TB_CLM_USER_ROLE, user.getRole());
 
         long res = db.insert(TB_USERS, null, values);
         db.close();
@@ -339,24 +341,33 @@ public class RealStateDatabase extends SQLiteOpenHelper {
     }
 
     @SuppressLint("Range")
-    public int checkUser(String user_name, String password) {
+    public Users getUser(String user_name, String password) {
         SQLiteDatabase db = getReadableDatabase();
         String[] selectionArgs = {user_name, password};
-        String[] columns = {TB_CLM_USER_ID};
+        String[] columns = {TB_CLM_USER_ID, TB_CLM_USER_NAME, TB_CLM_USER_PASSWORD,TB_CLM_USER_EMAIL, TB_CLM_USER_FULL_NAME, TB_CLM_USER_PHONE,TB_CLM_USER_IMAGE,TB_CLM_USER_ROLE};
 
         Cursor cursor = db.query(TB_USERS, columns, TB_CLM_USER_NAME + " =? AND " + TB_CLM_USER_PASSWORD + " =?", selectionArgs, null, null, null);
-        int id = 0;
-        int cursorCount = cursor.getCount();
 
-        if (cursorCount > 0) {
-            cursor.moveToFirst();
-            id = cursor.getInt(cursor.getColumnIndex(TB_CLM_USER_ID));
-            cursor.close();
-            db.close();
-            return id;
+        Users user = null;
+
+        if (cursor != null && cursor.moveToFirst()) {
+            user = new Users();
+            user.setId(cursor.getInt(cursor.getColumnIndex(TB_CLM_USER_ID)));
+            user.setUserName(cursor.getString(cursor.getColumnIndex(TB_CLM_USER_NAME)));
+            user.setUserPassword(cursor.getString(cursor.getColumnIndex(TB_CLM_USER_PASSWORD)));
+            user.setEmail(cursor.getString(cursor.getColumnIndex(TB_CLM_USER_EMAIL)));
+            user.setFullName(cursor.getString(cursor.getColumnIndex(TB_CLM_USER_FULL_NAME)));
+            user.setPhone(cursor.getString(cursor.getColumnIndex(TB_CLM_USER_PHONE)));
+            user.setUserImage(cursor.getString(cursor.getColumnIndex(TB_CLM_USER_IMAGE)));
+            user.setRole(cursor.getString(cursor.getColumnIndex(TB_CLM_USER_ROLE)));
         }
 
-        return id;
+        if (cursor != null)
+            cursor.close();
+
+        db.close();
+
+        return user;
     }
 
 

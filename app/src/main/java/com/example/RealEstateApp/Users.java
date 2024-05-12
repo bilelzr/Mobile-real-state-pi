@@ -10,6 +10,23 @@ public class Users {
     private String email;
     private String phone;
 
+    private String role;
+
+
+    public Users() {
+    }
+
+    public Users(int id, String userName, String fullName, String userImage, String userPassword, String email, String phone, String role) {
+        this.id = id;
+        this.userName = userName;
+        this.fullName = fullName;
+        this.userImage = userImage;
+        this.userPassword = userPassword;
+        this.email = email;
+        this.phone = phone;
+        this.role = role;
+    }
+
     public Users(int id, String userName, String fullName, String userImage, String userPassword, String email, String phone) {
         this.id = id;
         this.userName = userName;
@@ -20,13 +37,14 @@ public class Users {
         this.phone = phone;
     }
 
-    public Users(String userName, String fullName, String userImage, String userPassword, String email, String phone) {
+    public Users(String userName, String fullName, String userImage, String userPassword, String email, String phone, String role) {
         this.userName = userName;
         this.fullName = fullName;
         this.userImage = userImage;
         this.userPassword = userPassword;
         this.email = email;
         this.phone = phone;
+        this.role = role;
     }
 
     public Users(int id, String fullName, String userImage, String email, String phone) {
@@ -91,5 +109,13 @@ public class Users {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }
