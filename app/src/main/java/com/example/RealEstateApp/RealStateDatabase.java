@@ -107,7 +107,7 @@ public class RealStateDatabase extends SQLiteOpenHelper {
     }
 
 
-    public boolean insertProduct(Property p, String tableName) {
+    public boolean insertProperty(Property p, String tableName) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
 
@@ -152,7 +152,7 @@ public class RealStateDatabase extends SQLiteOpenHelper {
 
         if (cursor.moveToFirst()) {
             do {
-                @SuppressLint("Range") int image = cursor.getInt(cursor.getColumnIndex(TB_CLM_IMAGE));
+                @SuppressLint("Range") String image = cursor.getString(cursor.getColumnIndex(TB_CLM_IMAGE));
                 @SuppressLint("Range") String name = cursor.getString(cursor.getColumnIndex(TB_CLM_NAME));
                 @SuppressLint("Range") Double price = cursor.getDouble(cursor.getColumnIndex(TB_CLM_PRICE));
                 @SuppressLint("Range") String location = cursor.getString(cursor.getColumnIndex(TB_CLM_LOCATION));
@@ -175,7 +175,7 @@ public class RealStateDatabase extends SQLiteOpenHelper {
 
         if (cursor.moveToFirst() && cursor != null) {
             @SuppressLint("Range") int id = cursor.getInt(cursor.getColumnIndex(TB_CLM_ID));
-            @SuppressLint("Range") int image = cursor.getInt(cursor.getColumnIndex(TB_CLM_IMAGE));
+            @SuppressLint("Range") String image = cursor.getString(cursor.getColumnIndex(TB_CLM_IMAGE));
             @SuppressLint("Range") String name = cursor.getString(cursor.getColumnIndex(TB_CLM_NAME));
             @SuppressLint("Range") Double price = cursor.getDouble(cursor.getColumnIndex(TB_CLM_PRICE));
             @SuppressLint("Range") String location = cursor.getString(cursor.getColumnIndex(TB_CLM_LOCATION));
@@ -198,7 +198,7 @@ public class RealStateDatabase extends SQLiteOpenHelper {
 
         if (cursor.moveToFirst() && cursor != null) {
             do {
-                @SuppressLint("Range") int image = cursor.getInt(cursor.getColumnIndex(TB_CLM_IMAGE));
+                @SuppressLint("Range") String image = cursor.getString(cursor.getColumnIndex(TB_CLM_IMAGE));
                 @SuppressLint("Range") String name = cursor.getString(cursor.getColumnIndex(TB_CLM_NAME));
                 @SuppressLint("Range") Double price = cursor.getDouble(cursor.getColumnIndex(TB_CLM_PRICE));
                 @SuppressLint("Range") String location = cursor.getString(cursor.getColumnIndex(TB_CLM_LOCATION));
@@ -246,7 +246,7 @@ public class RealStateDatabase extends SQLiteOpenHelper {
 
         if (cursor.moveToFirst() && cursor != null) {
             do {
-                @SuppressLint("Range") int image = cursor.getInt(cursor.getColumnIndex(TB_CLM_IMAGE));
+                @SuppressLint("Range") String image = cursor.getString(cursor.getColumnIndex(TB_CLM_IMAGE));
                 @SuppressLint("Range") String name = cursor.getString(cursor.getColumnIndex(TB_CLM_NAME));
                 @SuppressLint("Range") Double price = cursor.getDouble(cursor.getColumnIndex(TB_CLM_PRICE));
                 @SuppressLint("Range") String location = cursor.getString(cursor.getColumnIndex(TB_CLM_LOCATION));
@@ -271,7 +271,7 @@ public class RealStateDatabase extends SQLiteOpenHelper {
 
         if (cursor.moveToFirst() && cursor != null) {
             do {
-                @SuppressLint("Range") int image = cursor.getInt(cursor.getColumnIndex(TB_CLM_IMAGE));
+                @SuppressLint("Range") String image = cursor.getString(cursor.getColumnIndex(TB_CLM_IMAGE));
                 @SuppressLint("Range") String name = cursor.getString(cursor.getColumnIndex(TB_CLM_NAME));
                 @SuppressLint("Range") Double price = cursor.getDouble(cursor.getColumnIndex(TB_CLM_PRICE));
                 @SuppressLint("Range") String location = cursor.getString(cursor.getColumnIndex(TB_CLM_LOCATION));
@@ -347,7 +347,7 @@ public class RealStateDatabase extends SQLiteOpenHelper {
     public Users getUser(String user_name, String password) {
         SQLiteDatabase db = getReadableDatabase();
         String[] selectionArgs = {user_name, password};
-        String[] columns = {TB_CLM_USER_ID, TB_CLM_USER_NAME, TB_CLM_USER_PASSWORD,TB_CLM_USER_EMAIL, TB_CLM_USER_FULL_NAME, TB_CLM_USER_PHONE,TB_CLM_USER_IMAGE,TB_CLM_USER_ROLE};
+        String[] columns = {TB_CLM_USER_ID, TB_CLM_USER_NAME, TB_CLM_USER_PASSWORD, TB_CLM_USER_EMAIL, TB_CLM_USER_FULL_NAME, TB_CLM_USER_PHONE, TB_CLM_USER_IMAGE, TB_CLM_USER_ROLE};
 
         Cursor cursor = db.query(TB_USERS, columns, TB_CLM_USER_NAME + " =? AND " + TB_CLM_USER_PASSWORD + " =?", selectionArgs, null, null, null);
 

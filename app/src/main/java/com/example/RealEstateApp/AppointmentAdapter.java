@@ -54,8 +54,8 @@ public class AppointmentAdapter extends BaseAdapter {
         TextView tv_dateApointment = v.findViewById(R.id.tv_date_appointment_property);
 
         Appointment appointment = getItem(i);
-        if (appointment.getProperty().getImage() != 0) {
-            img.setImageResource(appointment.getProperty().getImage());
+        if (Integer.parseInt(appointment.getProperty().getImage()) != 0) {
+            img.setImageResource(Integer.parseInt(appointment.getProperty().getImage()));
         } else {
             img.setImageResource(R.drawable.products);
         }

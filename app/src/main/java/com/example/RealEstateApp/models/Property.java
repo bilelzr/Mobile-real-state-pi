@@ -5,7 +5,7 @@ import android.content.Context;
 public class Property {
 
     private int id;
-    private int image;
+    private String image;
     private String name;
     private double price;
     private String location;
@@ -15,8 +15,7 @@ public class Property {
     private double discount;
 
 
-
-    public Property(int image, String name, double price, String location, String description, double discount, String type) {
+    public Property(String image, String name, double price, String location, String description, double discount, String type) {
         this.image = image;
         this.name = name;
         this.price = price;
@@ -26,7 +25,7 @@ public class Property {
         this.discount = discount;
     }
 
-    public Property(int image, String name, double price, String location, String type) {
+    public Property(String image, String name, double price, String location, String type) {
         this.image = image;
         this.name = name;
         this.price = price;
@@ -34,7 +33,7 @@ public class Property {
         this.type = type;
     }
 
-    public Property(int image, String name, double price, String location) {
+    public Property(String image, String name, double price, String location) {
         this.image = image;
         this.name = name;
         this.price = price;
@@ -64,7 +63,7 @@ public class Property {
     }
 
 
-    public Property(int id, int image, String name, double price, String brand, String description, double discount, String type) {
+    public Property(int id, String image, String name, double price, String brand, String description, double discount, String type) {
         this.id = id;
         this.image = image;
         this.name = name;
@@ -84,11 +83,11 @@ public class Property {
         this.id = id;
     }
 
-    public int getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(int image) {
+    public void setImage(String image) {
         this.image = image;
     }
 

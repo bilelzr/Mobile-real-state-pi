@@ -56,8 +56,8 @@ public class PropertyListAdminAdapter extends BaseAdapter {
         ImageView imgDelete = (ImageView) v.findViewById(R.id.img_delete);
         imgDelete.setImageResource(R.drawable.delete);
         Property property = getItem(i);
-        if (property.getImage() != 0) {
-            img.setImageResource(property.getImage());
+        if (Integer.parseInt(property.getImage()) != 0) {
+            img.setImageResource(Integer.parseInt(property.getImage()));
         } else {
             img.setImageResource(R.drawable.products);
         }

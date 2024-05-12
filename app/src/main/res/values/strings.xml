@@ -9,6 +9,13 @@
         <item>5</item>
     </string-array>
 
+    <string-array name="property_categories_array">
+        <item>Villa</item>
+        <item>House</item>
+        <item>Apartment</item>
+        <item>Firma</item>
+    </string-array>
+
     <string-array name="Language">
         <item>English (US)</item>
         <item>English (UK)</item>

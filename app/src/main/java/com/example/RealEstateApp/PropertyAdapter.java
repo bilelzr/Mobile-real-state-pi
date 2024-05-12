@@ -44,8 +44,8 @@ public class PropertyAdapter extends RecyclerView.Adapter<PropertyAdapter.Proper
     @Override
     public void onBindViewHolder(@NonNull PropertyViewHolder holder, int position) {
         Property p = products.get(position);
-        if (p.getImage() != 0) {
-            holder.img.setImageResource(p.getImage());
+        if (Integer.parseInt(p.getImage()) != 0) {
+            holder.img.setImageResource(Integer.parseInt(p.getImage()));
         } else {
             holder.img.setImageResource(R.drawable.products);
         }

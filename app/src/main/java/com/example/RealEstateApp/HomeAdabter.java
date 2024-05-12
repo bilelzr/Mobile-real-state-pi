@@ -38,8 +38,8 @@ public class HomeAdabter extends RecyclerView.Adapter<HomeAdabter.ProductInHomeV
     public void onBindViewHolder(@NonNull ProductInHomeViewHolder holder, int position) {
         Property p = products.get(position);
 
-        if(p.getImage() != 0){
-            holder.img.setImageResource(p.getImage());
+        if(Integer.parseInt(p.getImage()) != 0){
+            holder.img.setImageResource(Integer.parseInt(p.getImage()));
         }else{
             holder.img.setImageResource(R.drawable.products);
         }

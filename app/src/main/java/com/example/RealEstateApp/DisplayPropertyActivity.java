@@ -73,8 +73,8 @@ public class DisplayPropertyActivity extends AppCompatActivity {
         db = new RealStateDatabase(this);
         Property p = db.getProduct(product_id, table_name);
 
-        if (p.getImage() != 0)
-            property_img.setImageResource(p.getImage());
+        if (Integer.parseInt(p.getImage()) != 0)
+            property_img.setImageResource(Integer.parseInt(p.getImage()));
         property_name.setText(p.getName());
         if (p.getDiscount() > 0) {
             priceAfter = p.getPrice() - (p.getPrice() * (p.getDiscount() / 100));
@@ -95,7 +95,7 @@ public class DisplayPropertyActivity extends AppCompatActivity {
         add_to_cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int image = p.getImage();
+                String image = String.valueOf(p.getImage());
                 String name = property_name.getText().toString();
                 String location = Property_location.getText().toString();
                 String propertyType = Property_type.getText().toString();
@@ -105,7 +105,7 @@ public class DisplayPropertyActivity extends AppCompatActivity {
 */
                 shp_id = getSharedPreferences("Preferences_id", MODE_PRIVATE);
 
-                int user_id = shp_id.getInt("user_id",0);
+                int user_id = shp_id.getInt("user_id", 0);
 
                 Property propertyReservation = new Property(image, name, priceAfter, location, propertyType);
 
@@ -116,7 +116,7 @@ public class DisplayPropertyActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.dismiss();
-                        db.insertNewAppointment(propertyReservation,dateTime,user_id);
+                        db.insertNewAppointment(propertyReservation, dateTime, user_id);
                         Toast.makeText(DisplayPropertyActivity.this, "Appointement created Successfully", Toast.LENGTH_SHORT).show();
                         finish();
                     }
