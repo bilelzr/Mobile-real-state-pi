@@ -7,29 +7,28 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.RatingBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
 public class AppointmentAdapter extends BaseAdapter {
 
-    ArrayList<Property> purchases;
+    ArrayList<Appointment> appointments;
     Context context;
 
-    public AppointmentAdapter(ArrayList<Property> purchases, Context context) {
-        this.purchases = purchases;
+    public AppointmentAdapter(ArrayList<Appointment> appointments, Context context) {
+        this.appointments = appointments;
         this.context = context;
     }
 
     @Override
     public int getCount() {
-        return purchases.size();
+        return appointments.size();
     }
 
     @Override
-    public Property getItem(int i) {
-        return purchases.get(i);
+    public Appointment getItem(int i) {
+        return appointments.get(i);
     }
 
     @Override
@@ -48,19 +47,21 @@ public class AppointmentAdapter extends BaseAdapter {
 
         ImageView img = (ImageView) v.findViewById(R.id.img_property_appointment);
         TextView tv_name = v.findViewById(R.id.tv_name_property);
-        TextView tv_price = v.findViewById(R.id.tv_price_purchases);
-        TextView tv_brand = v.findViewById(R.id.tv_brand_purchases);
-        RatingBar rating = v.findViewById(R.id.rating_purchases);
+        TextView tv_price = v.findViewById(R.id.tv_price_property);
+        TextView tv_type = v.findViewById(R.id.tv_type_property);
+        TextView tv_dateApointment = v.findViewById(R.id.tv_date_appointment_property);
 
-        Property p = getItem(i);
-        if(p.getImage() != 0){
-            img.setImageResource(p.getImage());
+        Appointment p = getItem(i);
+        if(p.getProperty().getImage() != 0){
+            img.setImageResource(p.getProperty().getImage());
         }else{
             img.setImageResource(R.drawable.products);
         }
-        tv_name.setText(p.getName());
-        tv_price.setText(p.getPrice()+"$");
-        tv_brand.setText(p.getLocation());
+        tv_name.setText(p.getProperty().getName());
+        tv_price.setText(p.getProperty().getPrice()+"DT");
+        tv_type.setText(p.getProperty().getType());
+        tv_dateApointment.setText(p.getProperty().getLocation());
+
 
         return v;
     }

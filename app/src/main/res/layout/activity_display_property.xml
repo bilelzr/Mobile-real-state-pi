@@ -178,20 +178,6 @@
                 android:layout_marginTop="10dp"
                 android:padding="10dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif"
-                    android:text="Quantity  "
-                    android:textColor="@color/black"
-                    android:textSize="26sp" />
-                <Spinner
-                    android:id="@+id/display_get_quantity"
-                    android:layout_width="120dp"
-                    android:layout_height="35dp"
-                    android:background="@drawable/bg_spinner_num_count"
-                    android:entries="@array/number"/>
-
 
                 <EditText
                     android:id="@+id/display_get_datetime"

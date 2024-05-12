@@ -30,7 +30,7 @@ public class RealStateDatabase extends SQLiteOpenHelper {
     public static final String TB_VILLA = "villa";
     public static final String TB_FIRMA = "firma";
     public static final String TB_USERS = "users";
-    public static final String TB_PURCHASES = "purchases";
+    public static final String TB_APPOINTMENTS = "apointment";
     public static final String TB_PROPERTY_DISCOUNT = "product_discount";
 
     public static final String TB_CLM_ID = "id";
@@ -38,10 +38,11 @@ public class RealStateDatabase extends SQLiteOpenHelper {
     public static final String TB_CLM_NAME = "name";
     public static final String TB_CLM_PRICE = "price";
     public static final String TB_CLM_LOCATION = "location";
-    public static final String TB_CLM_PIECES = "pieces";
     public static final String TB_CLM_DESCRIPTION = "description";
     public static final String TB_CLM_DISCOUNT = "discount";
     public static final String TB_CLM_TYPE = "type";
+    public static final String TB_CLM_DATE = "date";
+    public static final String TB_CLM_USER_FK = "user_fk";
 
     public static final String TB_CLM_USER_ID = "user_id";
     public static final String TB_CLM_USER_NAME = "user_name";
@@ -68,8 +69,8 @@ public class RealStateDatabase extends SQLiteOpenHelper {
                 TB_CLM_USER_FULL_NAME + " TEXT , " + TB_CLM_USER_PASSWORD + " TEXT , " + TB_CLM_USER_EMAIL + " TEXT UNIQUE , " + TB_CLM_USER_PHONE + " TEXT , " + TB_CLM_USER_IMAGE + " TEXT );");
 
 
-        sqLiteDatabase.execSQL("CREATE TABLE " + TB_PURCHASES + " (" + TB_CLM_ID + " INTEGER PRIMARY KEY AUTOINCREMENT , " + TB_CLM_IMAGE + " INTEGER , " +
-                TB_CLM_NAME + " TEXT , " + TB_CLM_PRICE + " REAL , " + TB_CLM_LOCATION + " TEXT , " + TB_CLM_TYPE + " TEXT );");
+        sqLiteDatabase.execSQL("CREATE TABLE " + TB_APPOINTMENTS + " (" + TB_CLM_ID + " INTEGER PRIMARY KEY AUTOINCREMENT , " + TB_CLM_IMAGE + " INTEGER , " +
+                TB_CLM_NAME + " TEXT , " + TB_CLM_PRICE + " REAL , " + TB_CLM_LOCATION + " TEXT , " + TB_CLM_TYPE + " TEXT , " + TB_CLM_DATE + " TEXT , " + TB_CLM_USER_FK + " INTEGER);");
 
         Log.d("RealStateDatabase", "Tables created successfully.");
 
@@ -178,7 +179,7 @@ public class RealStateDatabase extends SQLiteOpenHelper {
             @SuppressLint("Range") double discount = cursor.getDouble(cursor.getColumnIndex(TB_CLM_DISCOUNT));
             @SuppressLint("Range") String type = cursor.getString(cursor.getColumnIndex(TB_CLM_TYPE));
 
-            Property p = new Property(id, image, name, price, location, description, discount,type);
+            Property p = new Property(id, image, name, price, location, description, discount, type);
             cursor.close();
             db.close();
             return p;
@@ -217,7 +218,7 @@ public class RealStateDatabase extends SQLiteOpenHelper {
         return result > 0;
     }
 
-    public boolean insertProductInPurchases(Property p) {
+    public boolean insertNewAppointment(Property p, String date, int userFk) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
 
@@ -226,16 +227,18 @@ public class RealStateDatabase extends SQLiteOpenHelper {
         values.put(TB_CLM_PRICE, p.getPrice());
         values.put(TB_CLM_TYPE, p.getType());
         values.put(TB_CLM_LOCATION, p.getLocation());
+        values.put(TB_CLM_DATE, date);
+        values.put(TB_CLM_USER_FK, userFk);
 
-        long res = db.insert(TB_PURCHASES, null, values);
+        long res = db.insert(TB_APPOINTMENTS, null, values);
         db.close();
         return res != -1;
     }
 
-    public ArrayList<Property> getAllProductsInPurchases() {
-        ArrayList<Property> products = new ArrayList<>();
+    public ArrayList<Appointment> getAllAppointments() {
+        ArrayList<Appointment> appointmentArrayList = new ArrayList<>();
         SQLiteDatabase db = getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM " + TB_PURCHASES + "", null);
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TB_APPOINTMENTS + "", null);
 
         if (cursor.moveToFirst() && cursor != null) {
             do {
@@ -244,14 +247,41 @@ public class RealStateDatabase extends SQLiteOpenHelper {
                 @SuppressLint("Range") Double price = cursor.getDouble(cursor.getColumnIndex(TB_CLM_PRICE));
                 @SuppressLint("Range") String location = cursor.getString(cursor.getColumnIndex(TB_CLM_LOCATION));
                 @SuppressLint("Range") String type = cursor.getString(cursor.getColumnIndex(TB_CLM_TYPE));
+                @SuppressLint("Range") String date = cursor.getString(cursor.getColumnIndex(TB_CLM_DATE));
 
                 Property p = new Property(image, name, price, location, type);
-                products.add(p);
+                Appointment appointment = new Appointment(p, date);
+                appointmentArrayList.add(appointment);
             } while (cursor.moveToNext());
             cursor.close();
         }
         db.close();
-        return products;
+        return appointmentArrayList;
+    }
+
+
+    public ArrayList<Appointment> getAllAppointmentsByUser(int userFk) {
+        ArrayList<Appointment> appointmentArrayList = new ArrayList<>();
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TB_APPOINTMENTS + " WHERE " + TB_CLM_USER_FK + " =?", new String[]{String.valueOf(userFk)});
+
+        if (cursor.moveToFirst() && cursor != null) {
+            do {
+                @SuppressLint("Range") int image = cursor.getInt(cursor.getColumnIndex(TB_CLM_IMAGE));
+                @SuppressLint("Range") String name = cursor.getString(cursor.getColumnIndex(TB_CLM_NAME));
+                @SuppressLint("Range") Double price = cursor.getDouble(cursor.getColumnIndex(TB_CLM_PRICE));
+                @SuppressLint("Range") String location = cursor.getString(cursor.getColumnIndex(TB_CLM_LOCATION));
+                @SuppressLint("Range") String type = cursor.getString(cursor.getColumnIndex(TB_CLM_TYPE));
+                @SuppressLint("Range") String date = cursor.getString(cursor.getColumnIndex(TB_CLM_DATE));
+
+                Property p = new Property(image, name, price, location, type);
+                Appointment appointment = new Appointment(p, date);
+                appointmentArrayList.add(appointment);
+            } while (cursor.moveToNext());
+            cursor.close();
+        }
+        db.close();
+        return appointmentArrayList;
     }
 
     public boolean insertUser(Users user) {

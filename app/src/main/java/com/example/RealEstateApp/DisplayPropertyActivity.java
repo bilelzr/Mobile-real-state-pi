@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Bundle;
@@ -28,9 +29,11 @@ public class DisplayPropertyActivity extends AppCompatActivity {
 
     RatingBar rb;
     ImageView property_img;
-    TextView  property_name, Property_price, Property_discount, Property_location, Property_description, Property_type;
+    TextView property_name, Property_price, Property_discount, Property_location, Property_description, Property_type;
     Spinner property_quantity;
     Button add_to_cart;
+    EditText display_get_datetime;
+    SharedPreferences shp_id;
     double priceAfter;
 
     RealStateDatabase db;
@@ -49,7 +52,7 @@ public class DisplayPropertyActivity extends AppCompatActivity {
         Property_location = findViewById(R.id.display_tv_location);
         Property_type = findViewById(R.id.display_tv_type);
         Property_description = findViewById(R.id.display_tv_description);
-        property_quantity = findViewById(R.id.display_get_quantity);
+        display_get_datetime = findViewById(R.id.display_get_datetime);
         add_to_cart = findViewById(R.id.display_btn_cart);
 
 
@@ -93,11 +96,16 @@ public class DisplayPropertyActivity extends AppCompatActivity {
                 int image = p.getImage();
                 String name = property_name.getText().toString();
                 String location = Property_location.getText().toString();
+                String propertyType = Property_type.getText().toString();
+                String dateTime = display_get_datetime.getText().toString();
 /*
                 int quantity = Integer.parseInt(product_quantity.getSelectedItem().toString());
 */
+                shp_id = getSharedPreferences("Preferences_id", MODE_PRIVATE);
 
-                Property ppp = new Property(image, name, priceAfter, location);
+                int user_id = shp_id.getInt("user_id",0);
+
+                Property propertyReservation = new Property(image, name, priceAfter, location, propertyType);
 
                 AlertDialog alertDialog = new AlertDialog.Builder(DisplayPropertyActivity.this).create();
                 alertDialog.setTitle(name);
@@ -106,8 +114,8 @@ public class DisplayPropertyActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.dismiss();
-                        db.insertProductInPurchases(ppp);
-                        Toast.makeText(DisplayPropertyActivity.this, "Purchased Successfully", Toast.LENGTH_SHORT).show();
+                        db.insertNewAppointment(propertyReservation,dateTime,user_id);
+                        Toast.makeText(DisplayPropertyActivity.this, "Appointement created Successfully", Toast.LENGTH_SHORT).show();
                         finish();
                     }
                 });
@@ -135,10 +143,9 @@ public class DisplayPropertyActivity extends AppCompatActivity {
                                     @Override
                                     public void onTimeSet(TimePicker view, int hourOfDay,
                                                           int minute) {
-                                        EditText editTextDateTime = findViewById(R.id.display_get_datetime);
                                         // Format the selected date and time and set it to the EditText
                                         String selectedDateTime = dayOfMonth + "/" + (monthOfYear + 1) + "/" + year + " " + hourOfDay + ":" + minute;
-                                        editTextDateTime.setText(selectedDateTime);
+                                        display_get_datetime.setText(selectedDateTime);
                                     }
                                 }, hour, minute, true);
                         timePickerDialog.show();

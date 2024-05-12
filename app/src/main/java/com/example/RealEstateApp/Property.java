@@ -14,6 +14,8 @@ public class Property {
     private String type;
     private double discount;
 
+
+
     public Property(int image, String name, double price, String location, String description, double discount, String type) {
         this.image = image;
         this.name = name;
