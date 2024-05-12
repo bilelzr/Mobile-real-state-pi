@@ -1,4 +1,4 @@
-package com.example.shoppingapp;
+package com.example.RealEstateApp;
 
 
 import android.annotation.SuppressLint;
@@ -87,6 +87,7 @@ public class RealStateDatabase extends SQLiteOpenHelper {
         String location = "location TEXT";
         String priceColumn = "price REAL";
         String descriptionColumn = "description TEXT";
+        String typeColumn = "type TEXT";
         String discountColumn = "discount REAL";
 
         return "CREATE TABLE " + tableName + " (" +
@@ -96,6 +97,7 @@ public class RealStateDatabase extends SQLiteOpenHelper {
                 location + ", " +
                 priceColumn + ", " +
                 descriptionColumn + ", " +
+                typeColumn + ", " +
                 discountColumn + ")";
     }
 
@@ -109,6 +111,7 @@ public class RealStateDatabase extends SQLiteOpenHelper {
         values.put(TB_CLM_PRICE, p.getPrice());
         values.put(TB_CLM_LOCATION, p.getLocation());
         values.put(TB_CLM_DESCRIPTION, p.getDescription());
+        values.put(TB_CLM_TYPE, p.getType());
         values.put(TB_CLM_DISCOUNT, p.getDiscount());
 
         long res = db.insert(tableName, null, values);
@@ -128,6 +131,7 @@ public class RealStateDatabase extends SQLiteOpenHelper {
         values.put(TB_CLM_PRICE, p.getPrice());
         values.put(TB_CLM_LOCATION, p.getLocation());
         values.put(TB_CLM_DESCRIPTION, p.getDescription());
+        values.put(TB_CLM_TYPE, p.getType());
         values.put(TB_CLM_DISCOUNT, p.getDiscount());
 
         long ress = db.insert(TB_PROPERTY_DISCOUNT, null, values);
@@ -172,8 +176,9 @@ public class RealStateDatabase extends SQLiteOpenHelper {
             @SuppressLint("Range") String location = cursor.getString(cursor.getColumnIndex(TB_CLM_LOCATION));
             @SuppressLint("Range") String description = cursor.getString(cursor.getColumnIndex(TB_CLM_DESCRIPTION));
             @SuppressLint("Range") double discount = cursor.getDouble(cursor.getColumnIndex(TB_CLM_DISCOUNT));
+            @SuppressLint("Range") String type = cursor.getString(cursor.getColumnIndex(TB_CLM_TYPE));
 
-            Property p = new Property(id, image, name, price, location, description, discount);
+            Property p = new Property(id, image, name, price, location, description, discount,type);
             cursor.close();
             db.close();
             return p;
@@ -219,6 +224,7 @@ public class RealStateDatabase extends SQLiteOpenHelper {
         values.put(TB_CLM_IMAGE, p.getImage());
         values.put(TB_CLM_NAME, p.getName());
         values.put(TB_CLM_PRICE, p.getPrice());
+        values.put(TB_CLM_TYPE, p.getType());
         values.put(TB_CLM_LOCATION, p.getLocation());
 
         long res = db.insert(TB_PURCHASES, null, values);

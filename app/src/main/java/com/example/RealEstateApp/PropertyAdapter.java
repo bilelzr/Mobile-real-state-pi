@@ -1,4 +1,4 @@
-package com.example.shoppingapp;
+package com.example.RealEstateApp;
 
 import android.graphics.Color;
 import android.graphics.Paint;

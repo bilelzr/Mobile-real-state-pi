@@ -1,4 +1,4 @@
-package com.example.shoppingapp;
+package com.example.RealEstateApp;
 
 import android.content.Intent;
 import android.os.Bundle;

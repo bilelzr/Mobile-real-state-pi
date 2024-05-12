@@ -1,4 +1,4 @@
-package com.example.shoppingapp;
+package com.example.RealEstateApp;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;

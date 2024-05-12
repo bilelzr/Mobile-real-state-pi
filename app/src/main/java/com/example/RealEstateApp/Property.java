@@ -1,4 +1,4 @@
-package com.example.shoppingapp;
+package com.example.RealEstateApp;
 
 import android.content.Context;
 
@@ -14,7 +14,7 @@ public class Property {
     private String type;
     private double discount;
 
-    public Property(int image, String name, double price, String location, String description, double discount,String type ) {
+    public Property(int image, String name, double price, String location, String description, double discount, String type) {
         this.image = image;
         this.name = name;
         this.price = price;
@@ -32,11 +32,11 @@ public class Property {
         this.type = type;
     }
 
-    public Property(int image, String name , double price , String location ){
-        this.image=image;
-        this.name=name;
-        this.price=price;
-        this.location= location;
+    public Property(int image, String name, double price, String location) {
+        this.image = image;
+        this.name = name;
+        this.price = price;
+        this.location = location;
     }
 
 
@@ -53,9 +53,6 @@ public class Property {
     }
 
 
-
-
-
     public String getType() {
         return type;
     }
@@ -65,8 +62,7 @@ public class Property {
     }
 
 
-
-    public Property(int id, int image, String name, double price, String brand,  String description, double discount) {
+    public Property(int id, int image, String name, double price, String brand, String description, double discount, String type) {
         this.id = id;
         this.image = image;
         this.name = name;
@@ -74,13 +70,8 @@ public class Property {
         this.location = brand;
         this.description = description;
         this.discount = discount;
+        this.type = type;
     }
-
-
-
-
-
-
 
 
     public int getId() {
@@ -122,7 +113,6 @@ public class Property {
     public void setLocation(String location) {
         this.location = location;
     }
-
 
 
     public String getDescription() {

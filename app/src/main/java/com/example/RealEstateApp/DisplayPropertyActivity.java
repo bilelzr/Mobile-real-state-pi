@@ -1,4 +1,4 @@
-package com.example.shoppingapp;
+package com.example.RealEstateApp;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
@@ -28,7 +28,7 @@ public class DisplayPropertyActivity extends AppCompatActivity {
 
     RatingBar rb;
     ImageView property_img;
-    TextView tv_rating, property_name, Property_price, Property_discount, Property_location, Property_description, Property_type;
+    TextView  property_name, Property_price, Property_discount, Property_location, Property_description, Property_type;
     Spinner property_quantity;
     Button add_to_cart;
     double priceAfter;
@@ -85,6 +85,7 @@ public class DisplayPropertyActivity extends AppCompatActivity {
         }
         Property_location.setText(p.getLocation());
         Property_description.setText(p.getDescription());
+        Property_type.setText(p.getType());
 
         add_to_cart.setOnClickListener(new View.OnClickListener() {
             @Override

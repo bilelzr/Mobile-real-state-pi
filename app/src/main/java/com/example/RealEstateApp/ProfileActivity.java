@@ -1,4 +1,4 @@
-package com.example.shoppingapp;
+package com.example.RealEstateApp;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;

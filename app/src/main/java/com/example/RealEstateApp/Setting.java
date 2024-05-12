@@ -1,4 +1,4 @@
-package com.example.shoppingapp;
+package com.example.RealEstateApp;
 
 import android.os.Bundle;
 import android.preference.PreferenceFragment;
