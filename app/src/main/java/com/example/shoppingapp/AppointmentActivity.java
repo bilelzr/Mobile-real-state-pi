@@ -8,27 +8,27 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
-public class PurchasesActivity extends AppCompatActivity {
+public class AppointmentActivity extends AppCompatActivity {
 
     ListView lv;
-    PurchasesAdapter pa;
+    AppointmentAdapter pa;
     RealStateDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_purchases);
+        setContentView(R.layout.activity_appointment);
 
-        lv = findViewById(R.id.lv_purchases);
+        lv = findViewById(R.id.lv_appointments);
 
         db = new RealStateDatabase(this);
 
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle("purchases");
+        actionBar.setTitle("Appointments");
 
         ArrayList<Property> p = new ArrayList<>();
         p = db.getAllProductsInPurchases();
-        pa = new PurchasesAdapter(p,this);
+        pa = new AppointmentAdapter(p,this);
         pa.notifyDataSetChanged();
         lv.setAdapter(pa);
 

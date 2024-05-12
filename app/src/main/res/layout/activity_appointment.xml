@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/bg_layout"
-    tools:context=".PurchasesActivity">
+    tools:context=".AppointmentActivity">
 
     <TextView
         android:layout_width="match_parent"
@@ -14,12 +14,12 @@
         android:drawableLeft="@drawable/purchases"
         android:drawablePadding="10dp"
         android:padding="10dp"
-        android:text="Purchases"
+        android:text="Appointments"
         android:textColor="@color/white"
         android:textSize="30dp" />
 
     <ListView
-        android:id="@+id/lv_purchases"
+        android:id="@+id/lv_appointments"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

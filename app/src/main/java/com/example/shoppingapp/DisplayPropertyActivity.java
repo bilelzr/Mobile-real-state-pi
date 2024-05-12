@@ -27,9 +27,9 @@ import java.util.Calendar;
 public class DisplayPropertyActivity extends AppCompatActivity {
 
     RatingBar rb;
-    ImageView product_img;
-    TextView tv_rating, product_name, Product_price, Product_discount, Product_location, Product_description;
-    Spinner product_quantity;
+    ImageView property_img;
+    TextView tv_rating, property_name, Property_price, Property_discount, Property_location, Property_description, Property_type;
+    Spinner property_quantity;
     Button add_to_cart;
     double priceAfter;
 
@@ -38,30 +38,26 @@ public class DisplayPropertyActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_display_products);
+        setContentView(R.layout.activity_display_property);
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle("Shopping App");
+        actionBar.setTitle("RealEstate App");
         rb = findViewById(R.id.ratingBar);
-        product_img = findViewById(R.id.display_iv_product);
-        product_name = findViewById(R.id.display_tv_name);
-        Product_price = findViewById(R.id.display_tv_price);
-        Product_discount = findViewById(R.id.display_tv_discount);
-        Product_location = findViewById(R.id.display_tv_location);
-        Product_description = findViewById(R.id.display_tv_description);
-        product_quantity = findViewById(R.id.display_get_quantity);
+        property_img = findViewById(R.id.display_iv_product);
+        property_name = findViewById(R.id.display_tv_name);
+        Property_price = findViewById(R.id.display_tv_price);
+        Property_discount = findViewById(R.id.display_tv_discount);
+        Property_location = findViewById(R.id.display_tv_location);
+        Property_type = findViewById(R.id.display_tv_type);
+        Property_description = findViewById(R.id.display_tv_description);
+        property_quantity = findViewById(R.id.display_get_quantity);
         add_to_cart = findViewById(R.id.display_btn_cart);
 
-        rb.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
-            @Override
-            public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {
-                tv_rating.setText(v + "");
-            }
-        });
+
         int product_id;
         String table_name;
         if (HomeActivity.flag == true) {
             Intent intent = getIntent();
-            product_id = intent.getIntExtra(HomeActivity.PRODUCT_KEY, -1);
+            product_id = intent.getIntExtra(HomeActivity.property_key, -1);
             table_name = intent.getStringExtra(HomeActivity.TABLE_NAME_KEY);
         } else {
             Intent intent = getIntent();
@@ -73,29 +69,29 @@ public class DisplayPropertyActivity extends AppCompatActivity {
         Property p = db.getProduct(product_id, table_name);
 
         if (p.getImage() != 0)
-            product_img.setImageResource(p.getImage());
-        product_name.setText(p.getName());
+            property_img.setImageResource(p.getImage());
+        property_name.setText(p.getName());
         if (p.getDiscount() > 0) {
             priceAfter = p.getPrice() - (p.getPrice() * (p.getDiscount() / 100));
-            Product_discount.setText(priceAfter + "$");
-            Product_price.setText(p.getPrice() + "$");
-            Product_price.setPaintFlags(Product_price.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);//وضع خط علي السعر القديم
-            Product_price.setTextColor(Color.parseColor("#BFBFBF"));
+            Property_discount.setText(priceAfter + "DT");
+            Property_price.setText(p.getPrice() + "DT");
+            Property_price.setPaintFlags(Property_price.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);//وضع خط علي السعر القديم
+            Property_price.setTextColor(Color.parseColor("#BFBFBF"));
         } else {
             priceAfter = p.getPrice();
-            Product_discount.setText("");
-            Product_price.setText(priceAfter + "$");
-            Product_price.setTextColor(Color.parseColor("#000000"));
+            Property_discount.setText("");
+            Property_price.setText(priceAfter + "DT");
+            Property_price.setTextColor(Color.parseColor("#000000"));
         }
-        Product_location.setText(p.getLocation());
-        Product_description.setText(p.getDescription());
+        Property_location.setText(p.getLocation());
+        Property_description.setText(p.getDescription());
 
         add_to_cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 int image = p.getImage();
-                String name = product_name.getText().toString();
-                String location = Product_location.getText().toString();
+                String name = property_name.getText().toString();
+                String location = Property_location.getText().toString();
 /*
                 int quantity = Integer.parseInt(product_quantity.getSelectedItem().toString());
 */

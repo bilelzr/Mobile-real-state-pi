@@ -10,62 +10,61 @@ public class Property {
     private double price;
     private String location;
     private String description;
-    private double discount;
-    private float rating;
 
-    public Property(int image, String name, double price, String location, String description, double discount, float rating) {
+    private String type;
+    private double discount;
+
+    public Property(int image, String name, double price, String location, String description, double discount,String type ) {
         this.image = image;
         this.name = name;
         this.price = price;
         this.location = location;
         this.description = description;
+        this.type = type;
         this.discount = discount;
-        this.rating = rating;
     }
 
-    public Property(int image,String name , double price , String location ){
+    public Property(int image, String name, double price, String location, String type) {
+        this.image = image;
+        this.name = name;
+        this.price = price;
+        this.location = location;
+        this.type = type;
+    }
+
+    public Property(int image, String name , double price , String location ){
         this.image=image;
         this.name=name;
         this.price=price;
         this.location= location;
     }
 
-    public Property(String name, double price, String location, String description, double discount, float rating) {
+
+    public Property(String name, double price, String location, String description, double discount) {
         this.name = name;
         this.price = price;
         this.location = location;
         this.description = description;
         this.discount = discount;
-        this.rating = rating;
     }
 
     public Property(int id) {
         this.id = id;
     }
 
-    public float getRating() {
-        return rating;
+
+
+
+
+    public String getType() {
+        return type;
     }
 
-    public void setRating(float rating) {
-        this.rating = rating;
+    public void setType(String type) {
+        this.type = type;
     }
 
-    public Property(int id, int image, String name, double price, float rating) {
-        this.id = id;
-        this.image = image;
-        this.name = name;
-        this.price = price;
-        this.rating = rating;
-    }
 
-    public Property(int image, String name, double price, double discount, float rating) {
-        this.image = image;
-        this.name = name;
-        this.price = price;
-        this.discount = discount;
-        this.rating = rating;
-    }
 
     public Property(int id, int image, String name, double price, String brand,  String description, double discount) {
         this.id = id;
@@ -77,34 +76,12 @@ public class Property {
         this.discount = discount;
     }
 
-    public Property(int id, int image, String name, double price, String brand, float rating) {
-        this.id = id;
-        this.image = image;
-        this.name = name;
-        this.price = price;
-        this.location = brand;
-        this.rating = rating;
-    }
-
-    public Property(int image, String name, double price, String brand, float rating, int quantity) {
-        this.image = image;
-        this.name = name;
-        this.price = price;
-        this.location = brand;
-        this.rating = rating;
-    }
 
 
 
 
-    public Property(int image, String name, double price, String brand,  String description, double discount) {
-        this.image = image;
-        this.name = name;
-        this.price = price;
-        this.location = brand;
-        this.description = description;
-        this.discount = discount;
-    }
+
+
 
     public int getId() {
         return id;

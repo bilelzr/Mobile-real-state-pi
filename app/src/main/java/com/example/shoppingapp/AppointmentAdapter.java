@@ -12,12 +12,12 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class PurchasesAdapter extends BaseAdapter {
+public class AppointmentAdapter extends BaseAdapter {
 
     ArrayList<Property> purchases;
     Context context;
 
-    public PurchasesAdapter(ArrayList<Property> purchases, Context context) {
+    public AppointmentAdapter(ArrayList<Property> purchases, Context context) {
         this.purchases = purchases;
         this.context = context;
     }
@@ -43,11 +43,11 @@ public class PurchasesAdapter extends BaseAdapter {
 
         View v = view;
         if(v==null){
-            v = LayoutInflater.from(context).inflate(R.layout.custome_purchases_products,null,false);
+            v = LayoutInflater.from(context).inflate(R.layout.custome_appointment_products,null,false);
         }
 
-        ImageView img = (ImageView) v.findViewById(R.id.img_products_purchases);
-        TextView tv_name = v.findViewById(R.id.tv_name_purchases);
+        ImageView img = (ImageView) v.findViewById(R.id.img_property_appointment);
+        TextView tv_name = v.findViewById(R.id.tv_name_property);
         TextView tv_price = v.findViewById(R.id.tv_price_purchases);
         TextView tv_brand = v.findViewById(R.id.tv_brand_purchases);
         RatingBar rating = v.findViewById(R.id.rating_purchases);
@@ -61,7 +61,6 @@ public class PurchasesAdapter extends BaseAdapter {
         tv_name.setText(p.getName());
         tv_price.setText(p.getPrice()+"$");
         tv_brand.setText(p.getLocation());
-        rating.setRating(p.getRating());
 
         return v;
     }

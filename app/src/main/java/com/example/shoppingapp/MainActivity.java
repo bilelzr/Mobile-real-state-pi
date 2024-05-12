@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         tv_firma = findViewById(R.id.tv_firma_card);
 
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle("Products");
+        actionBar.setTitle("Properties");
 
 
         db = new RealStateDatabase(this);

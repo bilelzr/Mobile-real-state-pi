@@ -41,8 +41,7 @@ public class RealStateDatabase extends SQLiteOpenHelper {
     public static final String TB_CLM_PIECES = "pieces";
     public static final String TB_CLM_DESCRIPTION = "description";
     public static final String TB_CLM_DISCOUNT = "discount";
-    public static final String TB_CLM_RATING = "rating";
-    public static final String TB_CLM_QUANTITY = "quantity";
+    public static final String TB_CLM_TYPE = "type";
 
     public static final String TB_CLM_USER_ID = "user_id";
     public static final String TB_CLM_USER_NAME = "user_name";
@@ -70,7 +69,7 @@ public class RealStateDatabase extends SQLiteOpenHelper {
 
 
         sqLiteDatabase.execSQL("CREATE TABLE " + TB_PURCHASES + " (" + TB_CLM_ID + " INTEGER PRIMARY KEY AUTOINCREMENT , " + TB_CLM_IMAGE + " INTEGER , " +
-                TB_CLM_NAME + " TEXT , " + TB_CLM_PRICE + " REAL , " + TB_CLM_LOCATION + " TEXT , " + TB_CLM_RATING + " REAL , " + TB_CLM_QUANTITY + " INTEGER );");
+                TB_CLM_NAME + " TEXT , " + TB_CLM_PRICE + " REAL , " + TB_CLM_LOCATION + " TEXT , " + TB_CLM_TYPE + " TEXT );");
 
         Log.d("RealStateDatabase", "Tables created successfully.");
 
@@ -150,8 +149,9 @@ public class RealStateDatabase extends SQLiteOpenHelper {
                 @SuppressLint("Range") String location = cursor.getString(cursor.getColumnIndex(TB_CLM_LOCATION));
                 @SuppressLint("Range") String description = cursor.getString(cursor.getColumnIndex(TB_CLM_DESCRIPTION));
                 @SuppressLint("Range") double discount = cursor.getDouble(cursor.getColumnIndex(TB_CLM_DISCOUNT));
+                @SuppressLint("Range") String type = cursor.getString(cursor.getColumnIndex(TB_CLM_TYPE));
 
-                Property p = new Property(image, name, price, location, description, discount);
+                Property p = new Property(image, name, price, location, description, discount, type);
                 products.add(p);
             } while (cursor.moveToNext());
             cursor.close();
@@ -173,7 +173,7 @@ public class RealStateDatabase extends SQLiteOpenHelper {
             @SuppressLint("Range") String description = cursor.getString(cursor.getColumnIndex(TB_CLM_DESCRIPTION));
             @SuppressLint("Range") double discount = cursor.getDouble(cursor.getColumnIndex(TB_CLM_DISCOUNT));
 
-            Property p = new Property(id, image, name, price, location,  description, discount);
+            Property p = new Property(id, image, name, price, location, description, discount);
             cursor.close();
             db.close();
             return p;
@@ -194,8 +194,9 @@ public class RealStateDatabase extends SQLiteOpenHelper {
                 @SuppressLint("Range") String location = cursor.getString(cursor.getColumnIndex(TB_CLM_LOCATION));
                 @SuppressLint("Range") String description = cursor.getString(cursor.getColumnIndex(TB_CLM_DESCRIPTION));
                 @SuppressLint("Range") double discount = cursor.getDouble(cursor.getColumnIndex(TB_CLM_DISCOUNT));
+                @SuppressLint("Range") String type = cursor.getString(cursor.getColumnIndex(TB_CLM_TYPE));
 
-                Property p = new Property(image, name, price, location, description, discount);
+                Property p = new Property(image, name, price, location, description, discount, type);
                 products.add(p);
             } while (cursor.moveToNext());
             cursor.close();
@@ -219,7 +220,6 @@ public class RealStateDatabase extends SQLiteOpenHelper {
         values.put(TB_CLM_NAME, p.getName());
         values.put(TB_CLM_PRICE, p.getPrice());
         values.put(TB_CLM_LOCATION, p.getLocation());
-        values.put(TB_CLM_RATING, p.getRating());
 
         long res = db.insert(TB_PURCHASES, null, values);
         db.close();
@@ -237,10 +237,9 @@ public class RealStateDatabase extends SQLiteOpenHelper {
                 @SuppressLint("Range") String name = cursor.getString(cursor.getColumnIndex(TB_CLM_NAME));
                 @SuppressLint("Range") Double price = cursor.getDouble(cursor.getColumnIndex(TB_CLM_PRICE));
                 @SuppressLint("Range") String location = cursor.getString(cursor.getColumnIndex(TB_CLM_LOCATION));
-                @SuppressLint("Range") float rating = cursor.getFloat(cursor.getColumnIndex(TB_CLM_RATING));
-                @SuppressLint("Range") int quantity = cursor.getInt(cursor.getColumnIndex(TB_CLM_QUANTITY));
+                @SuppressLint("Range") String type = cursor.getString(cursor.getColumnIndex(TB_CLM_TYPE));
 
-                Property p = new Property(image, name, price, location, rating, quantity);
+                Property p = new Property(image, name, price, location, type);
                 products.add(p);
             } while (cursor.moveToNext());
             cursor.close();
@@ -352,7 +351,7 @@ public class RealStateDatabase extends SQLiteOpenHelper {
 
                 for (Property property : productList) {
                     // Convert ProductJson to Property
-                    Property p = new Property(property.getName(), property.getPrice(), property.getLocation(), property.getDescription(), property.getDiscount(), property.getRating());
+                    Property p = new Property(property.getName(), property.getPrice(), property.getLocation(), property.getDescription(), property.getDiscount());
                     products.add(p);
                 }
             }

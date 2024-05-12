@@ -25,7 +25,7 @@ public class HomeActivity extends AppCompatActivity {
 
     BottomNavigationView bnv;
     RecyclerView rv;
-    public static final String PRODUCT_KEY = "product_key";
+    public static final String property_key = "property_key";
     private static final int PERMISSION_REQ_COD = 1;
     public static final String TABLE_NAME_KEY = "table_key";
     SharedPreferences shp;
@@ -42,32 +42,31 @@ public class HomeActivity extends AppCompatActivity {
         flag = false;
         db = new RealStateDatabase(this);
 
-        //    int image, String name, double price, String brand, int pieces, String description, double discount, float rating
-        Property p = new Property(R.drawable.house_2, "playstation4", 2500, "sony", "computer noc Barnes & Noble Retail and Samsung Electronics launched the new Samsung Galaxy Tab 4 Noc tablet in New York.", 10, (float) 3.5);
+        Property p = new Property(R.drawable.house_2, "House", 2500, "Zahrouni", "DAR MEZYENA FI ZAHROUNI S+3", 10, "RENT");
 
-        db.insertProduct(p, RealStateDatabase.TB_APARTMENT);
+        db.insertProduct(p, RealStateDatabase.TB_HOUSE);
 
-        Property p1 = new Property(R.drawable.house_2, "playstation5&4", 7600, "sony", "Sony PlayStation 5 Console + 2 DualSense Wireless Controller+ fifa 21 standard edition All prices include VAT..", 25, (float) 3.5);
+        Property p1 = new Property(R.drawable.house_2, "APARTEMENT", 7600, "Zahrouni", "LOL", 5, "RENT");
         db.insertProduct(p1, RealStateDatabase.TB_APARTMENT);
 
-        Property p2 = new Property(R.drawable.house_3, "pes2012", 4900, "Konami", "AUTHENTIC LEAGUES - Fully licensed leagues are coming to PES 2012. Details to be revealed soon!", 0, (float) 3.5);
-        db.insertProduct(p2, RealStateDatabase.TB_APARTMENT);
+        Property p2 = new Property(R.drawable.house_3, "HOUSE", 4900, "Zahrouni", "S+1", 5, "RENT");
+        db.insertProduct(p2, RealStateDatabase.TB_HOUSE);
 
-        Property p3 = new Property(R.drawable.house_4, "menacing", 5850, "acer", "Acer Predator Thronos Air, Gaming Throne with Massage Pad and Gaming Chair, Up to 3 Displays, 130 Degrees Recline, LED Lighting, PC Landing Pad, Stabilizing Arm (PC and Monitors Sold Separately)", 0, (float) 3.5);
-        db.insertProduct(p3, RealStateDatabase.TB_APARTMENT);
+        Property p3 = new Property(R.drawable.house_4, "FIRMA", 5850, "TUNIS", "S+4", 5, "RENT");
+        db.insertProduct(p3, RealStateDatabase.TB_FIRMA);
 
-        Property p4 = new Property(R.drawable.house_5, "char gaming", 6000, "acer", "different colors gaming Thermaltake U-Fit Black-Red Gaming Chair GGC-UFT-BRMWDS-01 GGC-UFT-BRMWDS-01", 0, (float) 3.5);
-        db.insertProduct(p4, RealStateDatabase.TB_APARTMENT);
+        Property p4 = new Property(R.drawable.house_5, "char gaming", 6000, "BEN AROUS", "s+2", 0, "RENT");
+        db.insertProduct(p4, RealStateDatabase.TB_HOUSE);
 
-        Property p5 = new Property(R.drawable.house_5, "gamecontroller5", 800, " Powerextra", "Powerextra Xbox 360 Controllers,USB Gamepad Wired Controller Improved Ergonomic Joystick Dual Vibration,Compatible with Xbox 360 Slim/Xbox 360/PC(Windows / 7/8.1/10),Black", 0, (float) 3.5);
-        db.insertProduct(p5, RealStateDatabase.TB_APARTMENT);
-        Property p6 = new Property(R.drawable.house_4, "Microwave", 270, "TOSHIBA", "Microwave is an electric device used to heat various types of foods, and this type of oven is different from traditional ovens", 0, (float) 3.5);
-        db.insertProduct(p6, RealStateDatabase.TB_APARTMENT);
-        Property p7 = new Property(R.drawable.house_3, "vacuum cleaner", 210, "TOSHIBA", "Hoover Vacuum Cleaner - 2000W, Black - Red TCP2010020 Buy with installments and pay EGP 51.06 for 48 months with select banks.", 10, (float) 3.5);
-        db.insertProduct(p7, RealStateDatabase.TB_APARTMENT);
-        Property p8 = new Property(R.drawable.house_2, "Washer", 690, "TOSHIBA", "TOSHIBA Washing Machine Half Automatic Capacity : 12 Kg Max Spin Speed : 1400 RPM With 2 Motors Washing Machine Giant Super Size Works With All Kinds of Regular Powders Vortexes System", 0, (float) 3.5);
+        Property p5 = new Property(R.drawable.house_5, "FIRMA", 800, "SIDI HASSIN", "studio", 0, "SALE");
+        db.insertProduct(p5, RealStateDatabase.TB_FIRMA);
+        Property p6 = new Property(R.drawable.house_4, "HOUSE", 270, "SIDI HASSIN", "s+1 pas de finision", 0, "SALE");
+        db.insertProduct(p6, RealStateDatabase.TB_HOUSE);
+        Property p7 = new Property(R.drawable.house_3, "DAR KHLE3A", 210, "SIDI HASSIN", "VILLA 350m", 10, "SALE");
+        db.insertProduct(p7, RealStateDatabase.TB_VILLA);
+        Property p8 = new Property(R.drawable.house_2, "APARTEMENT", 690, "Zahrouni", "apartment s+1", 0, "SALE");
         db.insertProduct(p8, RealStateDatabase.TB_APARTMENT);
-        Property p9 = new Property(R.drawable.house_2, "t_shirt", 45, "Zara", "Black t_shirt size XL.", 0, (float) 3.5);
+        Property p9 = new Property(R.drawable.house_2, "APARTEMENT", 45, "TUNIS", "apartment s+2", 0, "SALE");
         db.insertProduct(p9, RealStateDatabase.TB_APARTMENT);
 /*
         Products p = new Products(15);
@@ -84,14 +83,14 @@ public class HomeActivity extends AppCompatActivity {
 
         ArrayList<Property> products1 = new ArrayList<>();
 
-            products1 = db.getAllProperties(RealStateDatabase.TB_PROPERTY_DISCOUNT);
+        products1 = db.getAllProperties(RealStateDatabase.TB_PROPERTY_DISCOUNT);
 
 
         HomeAdabter adapter = new HomeAdabter(products1, new OnRecyclerViewClickListener() {
             @Override
             public void OnItemClick(int productId) {
                 Intent i = new Intent(getBaseContext(), DisplayPropertyActivity.class);
-                i.putExtra(PRODUCT_KEY, productId);
+                i.putExtra(property_key, productId);
                 i.putExtra(TABLE_NAME_KEY, RealStateDatabase.TB_PROPERTY_DISCOUNT);
                 flag = true;
                 startActivity(i);
@@ -121,7 +120,7 @@ public class HomeActivity extends AppCompatActivity {
                         startActivity(intent3);
                         break;
                     case R.id.basket:
-                        Intent intent4 = new Intent(getBaseContext(), PurchasesActivity.class);
+                        Intent intent4 = new Intent(getBaseContext(), AppointmentActivity.class);
                         startActivity(intent4);
                         break;
                 }
@@ -173,20 +172,19 @@ public class HomeActivity extends AppCompatActivity {
             finish();
 
         } catch (Exception ex) {
-            Toast.makeText(this, ex.getMessage().toString(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, ex.getMessage(), Toast.LENGTH_SHORT).show();
         }
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        switch (requestCode) {
-            case PERMISSION_REQ_COD:
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    //تم الحصول عليه
-                } else {
+        if (requestCode == PERMISSION_REQ_COD) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                //تم الحصول عليه
+            } else {
 
-                }
+            }
         }
     }
 
