@@ -1,27 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/bg_layout"
     tools:context=".AppointmentActivity">
 
     <TextView
+        android:id="@+id/text_properties"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/deal3"
+        android:layout_margin="16dp"
+        android:drawableStart="@drawable/deal3"
         android:drawablePadding="10dp"
         android:padding="10dp"
         android:text="Properties"
         android:textColor="@color/white"
-        android:textSize="30dp" />
+        android:textSize="24sp" />
 
     <ListView
         android:id="@+id/lv_properties"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text_properties"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="72dp"
+        android:divider="@null"
+        android:dividerHeight="0dp" />
 
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation_view_admin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:menu="@menu/bottom_nav_menu_admin" />
 
-</LinearLayout>
+</RelativeLayout>
