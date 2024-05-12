@@ -2,8 +2,10 @@ package com.example.RealEstateApp.Admin;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
@@ -16,6 +18,7 @@ import com.example.RealEstateApp.R;
 import com.example.RealEstateApp.RealStateDatabase;
 import com.example.RealEstateApp.models.Property;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
 
 import java.util.ArrayList;
@@ -24,10 +27,16 @@ public class AdminViewPropertyActivity extends AppCompatActivity {
 
     BottomNavigationView bnv;
 
+
+    FloatingActionButton addProp;
     ListView lv;
     PropertyListAdminAdapter pa;
     RealStateDatabase db;
     SharedPreferences shp_id;
+
+    private static final int PICK_IMAGE_REQUEST = 1;
+    private Uri imageUri;
+
 
 
     @Override
@@ -81,5 +90,24 @@ public class AdminViewPropertyActivity extends AppCompatActivity {
                 return true;
             }
         });
+
+
+        addProp = findViewById(R.id.property_add);
+        addProp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Define the action to start the new activity here
+                Intent intent = new Intent(AdminViewPropertyActivity.this, AddPropertyActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+
     }
+
+
+
+
+
 }

@@ -15,6 +15,9 @@
         android:theme="@style/Theme.ShoppingApp"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".Admin.AddPropertyActivity"
+            android:exported="false" />
+        <activity
             android:name=".Admin.AdminViewPropertyActivity"
             android:exported="false" />
         <activity
