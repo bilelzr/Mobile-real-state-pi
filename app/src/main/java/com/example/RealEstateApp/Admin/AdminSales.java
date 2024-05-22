@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class AdminSales extends AppCompatActivity {
 
     ListView lv;
-    com.example.RealEstateApp.Sales pa;
+    SalesAdminAdapter pa;
     RealStateDatabase db;
 
     @Override
@@ -30,10 +30,9 @@ public class AdminSales extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle("Sales");
 
-
-        ArrayList<Sales> Sales = new ArrayList<>();
-        Sales = db.getAllSales();
-        pa = new com.example.RealEstateApp.Sales(Sales, this);
+        ArrayList<Sales> sales = new ArrayList<>();
+        sales = db.getAllSales();
+        pa = new SalesAdminAdapter(sales, this);
         pa.notifyDataSetChanged();
         lv.setAdapter(pa);
 

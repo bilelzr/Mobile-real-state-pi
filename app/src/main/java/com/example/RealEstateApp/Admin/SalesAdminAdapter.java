@@ -39,7 +39,7 @@ public class SalesAdminAdapter extends BaseAdapter {
         return 0;
     }
 
-    @SuppressLint("ResourceType")
+    @SuppressLint({"ResourceType", "SetTextI18n"})
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
 
@@ -53,6 +53,9 @@ public class SalesAdminAdapter extends BaseAdapter {
         TextView tv_price = v.findViewById(R.id.tv_price_property);
         TextView tv_type = v.findViewById(R.id.tv_type_property);
         TextView tv_dateApointment = v.findViewById(R.id.tv_date_appointment_property);
+        TextView tv_paymentType = v.findViewById(R.id.tv_payement_sales_property);
+        TextView tv_commission = v.findViewById(R.id.tv_commission_sales_property);
+
 
         Sales sales = getItem(i);
         if (Integer.parseInt(sales.getProperty().getImage()) != 0) {
@@ -61,9 +64,11 @@ public class SalesAdminAdapter extends BaseAdapter {
             img.setImageResource(R.drawable.products);
         }
         tv_name.setText(sales.getProperty().getName());
-        tv_price.setText(sales.getProperty().getPrice() + "DT");
+        tv_price.setText(sales.getProperty().getPrice() + " DT");
         tv_type.setText(sales.getProperty().getType());
         tv_dateApointment.setText(sales.getDate());
+        tv_paymentType.setText(sales.getPayementMethod());
+        tv_commission.setText(sales.getCommission() +" DT");
         return v;
     }
 }

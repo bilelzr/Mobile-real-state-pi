@@ -11,12 +11,12 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class Sales extends BaseAdapter {
+public class SalesAdapter extends BaseAdapter {
 
     ArrayList<com.example.RealEstateApp.models.Sales> sales;
     Context context;
 
-    public Sales(ArrayList<com.example.RealEstateApp.models.Sales> sales, Context context) {
+    public SalesAdapter(ArrayList<com.example.RealEstateApp.models.Sales> sales, Context context) {
         this.sales = sales;
         this.context = context;
     }

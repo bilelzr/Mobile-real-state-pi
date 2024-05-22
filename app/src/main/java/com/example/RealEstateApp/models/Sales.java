@@ -39,6 +39,13 @@ public class Sales {
         this.payementMethod = payementMethod;
     }
 
+    public Sales(Property property, String date, String payementMethod, float commission) {
+        this.property = property;
+        Date = date;
+        this.commission = commission;
+        this.payementMethod = payementMethod;
+    }
+
     public int getUser_fk() {
         return user_fk;
     }

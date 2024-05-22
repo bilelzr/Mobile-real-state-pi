@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class SalesActivity extends AppCompatActivity {
 
     ListView lv;
-    com.example.RealEstateApp.Sales pa;
+    SalesAdapter pa;
     RealStateDatabase db;
     SharedPreferences shp_id;
 
@@ -33,7 +33,7 @@ public class SalesActivity extends AppCompatActivity {
 
         ArrayList<com.example.RealEstateApp.models.Sales> Sales = new ArrayList<>();
         Sales = db.getAllSalesByUser(user_id);
-        pa = new com.example.RealEstateApp.Sales(Sales, this);
+        pa = new SalesAdapter(Sales, this);
         pa.notifyDataSetChanged();
         lv.setAdapter(pa);
 

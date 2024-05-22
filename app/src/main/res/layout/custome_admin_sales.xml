@@ -18,7 +18,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="130dp"
+        android:layout_height="180sp"
         android:layout_marginStart="10dp"
         android:background="#ECECEC"
         android:orientation="vertical">
@@ -69,6 +69,23 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Date "
+            android:textColor="@color/black"
+            android:textSize="20dp" />
+
+
+        <TextView
+            android:id="@+id/tv_payement_sales_property"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Payement Type "
+            android:textColor="@color/black"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/tv_commission_sales_property"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Commision "
             android:textColor="@color/black"
             android:textSize="20dp" />
 

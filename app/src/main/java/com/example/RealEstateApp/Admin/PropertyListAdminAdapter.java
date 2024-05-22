@@ -65,6 +65,7 @@ public class PropertyListAdminAdapter extends BaseAdapter {
         tv_price.setText(property.getPrice() + "DT");
         tv_type.setText(property.getType());
         tv_location.setText(property.getLocation());
+
         return v;
     }
 }

@@ -315,9 +315,10 @@ public class RealStateDatabase extends SQLiteOpenHelper {
                 @SuppressLint("Range") String location = cursor.getString(cursor.getColumnIndex(TB_CLM_LOCATION));
                 @SuppressLint("Range") String type = cursor.getString(cursor.getColumnIndex(TB_CLM_TYPE));
                 @SuppressLint("Range") String date = cursor.getString(cursor.getColumnIndex(TB_CLM_DATE));
-
+                @SuppressLint("Range") String paymentType = cursor.getString(cursor.getColumnIndex(TB_CLM_SALES_PAYMENT_METHOD));
+                @SuppressLint("Range") Double commission = cursor.getDouble(cursor.getColumnIndex(TB_CLM_SALES_COMMISSION));
                 Property p = new Property(image, name, price, location, type);
-                Sales sales = new Sales(p, date);
+                Sales sales = new Sales(p, date,paymentType,commission.floatValue());
                 salesArrayList.add(sales);
             } while (cursor.moveToNext());
             cursor.close();
@@ -338,9 +339,11 @@ public class RealStateDatabase extends SQLiteOpenHelper {
                 @SuppressLint("Range") String location = cursor.getString(cursor.getColumnIndex(TB_CLM_LOCATION));
                 @SuppressLint("Range") String type = cursor.getString(cursor.getColumnIndex(TB_CLM_TYPE));
                 @SuppressLint("Range") String date = cursor.getString(cursor.getColumnIndex(TB_CLM_DATE));
+                @SuppressLint("Range") String paymentType = cursor.getString(cursor.getColumnIndex(TB_CLM_SALES_PAYMENT_METHOD));
+                @SuppressLint("Range") Double commission = cursor.getDouble(cursor.getColumnIndex(TB_CLM_SALES_COMMISSION));
 
                 Property p = new Property(image, name, price, location, type);
-                Sales sales = new Sales(p, date);
+                Sales sales = new Sales(p, date,paymentType,commission.floatValue());
                 salesArrayList.add(sales);
             } while (cursor.moveToNext());
             cursor.close();
