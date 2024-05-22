@@ -10,6 +10,8 @@ public class Sales {
 
     private String checkNumber;
 
+    private float commission;
+
 
     public Sales(Property property, String date, int user_fk) {
         this.property = property;
@@ -75,5 +77,14 @@ public class Sales {
 
     public void setCheckNumber(String checkNumber) {
         this.checkNumber = checkNumber;
+    }
+
+
+    public float getCommission() {
+        return commission;
+    }
+
+    public void setCommission(float commission) {
+        this.commission = commission;
     }
 }

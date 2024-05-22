@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RatingBar;
 import android.widget.Spinner;
@@ -126,16 +127,34 @@ public class DisplayPropertyActivity extends AppCompatActivity {
                 int user_id = shp_id.getInt("user_id", 0);
 
                 Property propertyReservation = new Property(image, name, priceAfter, location, propertyType);
+                int selectedId = radioGroupPayment.getCheckedRadioButtonId();
+
+                Float commission = calculeCommission((float) p.getPrice(), p.getType());
 
                 AlertDialog alertDialog = new AlertDialog.Builder(DisplayPropertyActivity.this).create();
                 alertDialog.setTitle(name);
-                alertDialog.setMessage("Click (Ok) TO Add This Product To Cart");
+                alertDialog.setMessage("Click (Ok) TO Add This Product To Cart, Commission Will be " + commission);
                 alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "Ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.dismiss();
-                        db.insertNewSales(propertyReservation, dateTime, user_id);
-                        Toast.makeText(DisplayPropertyActivity.this, "Appointement created Successfully", Toast.LENGTH_SHORT).show();
+                        if (selectedId != -1) {
+                            RadioButton selectedRadioButton = findViewById(selectedId);
+                            String paymentMethod = selectedRadioButton.getText().toString();
+                            if (selectedId == R.id.radio_check) {
+                                String checkNumber = editTextCheckNumber.getText().toString();
+                                Toast.makeText(DisplayPropertyActivity.this, "Payment Method: " + paymentMethod + "\nCheck Number: " + checkNumber, Toast.LENGTH_LONG).show();
+                                db.insertNewSales(propertyReservation, dateTime, user_id, paymentMethod, Integer.parseInt(checkNumber), commission);
+                                dialogInterface.dismiss();
+                                Toast.makeText(DisplayPropertyActivity.this, "Sales created Successfully", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(DisplayPropertyActivity.this, "Payment Method: " + paymentMethod, Toast.LENGTH_LONG).show();
+                                db.insertNewSales(propertyReservation, dateTime, user_id, paymentMethod, 0, commission);
+                                dialogInterface.dismiss();
+                                Toast.makeText(DisplayPropertyActivity.this, "sales created Successfully", Toast.LENGTH_SHORT).show();
+                            }
+                        } else {
+                            Toast.makeText(DisplayPropertyActivity.this, "Please select a payment method", Toast.LENGTH_LONG).show();
+                        }
                         finish();
                     }
                 });
@@ -172,5 +191,31 @@ public class DisplayPropertyActivity extends AppCompatActivity {
                     }
                 }, year, month, day);
         datePickerDialog.show();
+    }
+
+
+    Float calculeCommission(float price, String type) {
+        if (type.equals("RENT")) {
+            if (price < 300) {
+                return (float) (price * 0.05);
+            } else if ((price >= 300) && (price <= 500)) {
+                return (float) (price * 0.1);
+            } else if ((price > 500) && (price <= 700)) {
+                return (float) (price * 0.15);
+            } else if (price > 700) {
+                return (float) (price * 0.2);
+            }
+        } else if (type.equals("SALE")) {
+            if (price > 300000) {
+                return (float) (price * 0.03);
+            } else if (price > 100000) {
+                return (float) (price * 0.02);
+            } else {
+                return (float) (price * 0.01);
+            }
+
+
+        }
+        return (float) 0;
     }
 }

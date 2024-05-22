@@ -17,8 +17,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="6dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="6dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -58,7 +58,7 @@
                 android:id="@+id/display_iv_product"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:src="@drawable/products"/>
+                android:src="@drawable/products" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -72,16 +72,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="150$"
-                    android:textSize="30sp"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/black"
+                    android:textSize="30sp" />
 
                 <TextView
                     android:id="@+id/display_tv_discount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingStart="20dp"
-                    android:textSize="30sp"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black"
+                    android:textSize="30sp" />
 
             </LinearLayout>
 
@@ -136,8 +136,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:layout_marginTop="10dp"
+                android:orientation="horizontal"
                 android:paddingStart="10dp">
 
                 <TextView
@@ -149,7 +149,6 @@
                     android:textSize="30sp" />
 
 
-
             </LinearLayout>
 
             <TextView
@@ -159,9 +158,9 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="20dp"
                 android:fontFamily="sans-serif"
+                android:gravity="center"
                 android:paddingStart="10dp"
                 android:paddingEnd="10dp"
-                android:gravity="center"
                 android:text="description"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
@@ -169,8 +168,8 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
-                android:background="@color/bg_layout"
-                android:layout_marginBottom="10dp"/>
+                android:layout_marginBottom="10dp"
+                android:background="@color/bg_layout" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -185,11 +184,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:background="@drawable/bg_spinner_num_count"
+                    android:focusable="false"
                     android:hint="Select Date and Time"
                     android:inputType="none"
-                    android:focusable="false"
-                    android:onClick="showDateTimePickerDialog"/>
-
+                    android:onClick="showDateTimePickerDialog" />
 
 
             </LinearLayout>
@@ -198,8 +196,8 @@
                 android:id="@+id/radioGroup_payment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:layout_marginTop="16dp"
+                android:orientation="vertical"
                 android:paddingStart="10dp"
                 android:paddingEnd="10dp">
 
@@ -208,16 +206,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Visa"
-                    android:textSize="18sp"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
 
                 <RadioButton
                     android:id="@+id/radio_check"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Check"
-                    android:textSize="18sp"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
 
             </RadioGroup>
 
@@ -225,21 +223,23 @@
                 android:id="@+id/editText_check_number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Enter Check Number"
-                android:visibility="gone"
                 android:layout_marginTop="8dp"
+                android:hint="Enter Check Number"
+                android:inputType="number"
                 android:paddingStart="10dp"
-                android:paddingEnd="10dp"/>
+                android:paddingEnd="10dp"
+                android:visibility="gone" />
+            />
 
             <Button
                 android:id="@+id/display_btn_cart"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Get This Property"
                 android:layout_margin="16dp"
                 android:backgroundTint="@color/bg_button"
+                android:text="Get This Property"
                 android:textSize="20sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
         </LinearLayout>
     </ScrollView>

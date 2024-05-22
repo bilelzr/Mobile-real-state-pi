@@ -9,8 +9,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import com.example.RealEstateApp.models.Sales;
 import com.example.RealEstateApp.models.Property;
+import com.example.RealEstateApp.models.Sales;
 import com.example.RealEstateApp.models.Users;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -58,6 +58,7 @@ public class RealStateDatabase extends SQLiteOpenHelper {
     public static final String TB_CLM_USER_STATUS = "user_status";
     public static final String TB_CLM_SALES_CHECK_NUMBER = "check_number";
     public static final String TB_CLM_SALES_PAYMENT_METHOD = "payment_method";
+    public static final String TB_CLM_SALES_COMMISSION = "commission";
 
     public RealStateDatabase(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
@@ -79,7 +80,8 @@ public class RealStateDatabase extends SQLiteOpenHelper {
 
         sqLiteDatabase.execSQL("CREATE TABLE " + TB_SALES + " (" + TB_CLM_ID + " INTEGER PRIMARY KEY AUTOINCREMENT , " + TB_CLM_IMAGE + " INTEGER , " +
                 TB_CLM_NAME + " TEXT , " + TB_CLM_PRICE + " REAL , " + TB_CLM_LOCATION + " TEXT , " + TB_CLM_TYPE + " TEXT , "
-                + TB_CLM_DATE + " TEXT , " + TB_CLM_USER_FK + " INTEGER , " + TB_CLM_SALES_PAYMENT_METHOD + " TEXT , " +TB_CLM_SALES_CHECK_NUMBER + " INTEGER );");
+                + TB_CLM_DATE + " TEXT , " + TB_CLM_USER_FK + " INTEGER , "
+                + TB_CLM_SALES_PAYMENT_METHOD + " TEXT , " + TB_CLM_SALES_CHECK_NUMBER + " INTEGER , " + TB_CLM_SALES_COMMISSION + " REAL  );");
 
         Log.d("RealStateDatabase", "Tables created successfully.");
 
@@ -256,10 +258,9 @@ public class RealStateDatabase extends SQLiteOpenHelper {
         return result > 0;
     }
 
-    public boolean insertNewSales(Property p, String date, int userFk) {
+    public boolean insertNewSales(Property p, String date, int userFk, String payementMethod, int checkNumber, float commission) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
-
         values.put(TB_CLM_IMAGE, p.getImage());
         values.put(TB_CLM_NAME, p.getName());
         values.put(TB_CLM_PRICE, p.getPrice());
@@ -267,7 +268,10 @@ public class RealStateDatabase extends SQLiteOpenHelper {
         values.put(TB_CLM_LOCATION, p.getLocation());
         values.put(TB_CLM_DATE, date);
         values.put(TB_CLM_USER_FK, userFk);
-
+        values.put(TB_CLM_SALES_PAYMENT_METHOD, payementMethod);
+        values.put(TB_CLM_SALES_CHECK_NUMBER, checkNumber);
+        values.put(TB_CLM_SALES_CHECK_NUMBER, checkNumber);
+        values.put(TB_CLM_SALES_COMMISSION, commission);
         long res = db.insert(TB_SALES, null, values);
         db.close();
         return res != -1;
