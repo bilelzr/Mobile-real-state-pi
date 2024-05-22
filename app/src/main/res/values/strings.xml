@@ -16,6 +16,12 @@
         <item>Firma</item>
     </string-array>
 
+    <string-array name="type">
+        <item>RENT</item>
+        <item>SALE</item>
+
+    </string-array>
+
     <string-array name="Language">
         <item>English (US)</item>
         <item>English (UK)</item>

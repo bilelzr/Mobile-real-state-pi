@@ -79,7 +79,7 @@
                 android:textColor="@color/white"
                 android:textColorHint="@color/white" />
 
-            <EditText
+<!--            <EditText
                 android:id="@+id/et_property_type_add"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -94,7 +94,20 @@
                 android:inputType="text"
                 android:padding="12dp"
                 android:textColor="@color/white"
-                android:textColorHint="@color/white" />
+                android:textColorHint="@color/white" />-->
+
+
+            <Spinner
+                android:id="@+id/sp_property_type_add"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/input_bg"
+                android:padding="12dp"
+                android:spinnerMode="dropdown"
+                android:textColor="@color/white" />
 
             <Spinner
                 android:id="@+id/sp_property_category"

@@ -140,6 +140,7 @@
                 android:drawableLeft="@drawable/ic_person"
                 android:drawablePadding="10dp"
                 android:ems="100"
+                android:visibility="gone"
                 android:hint="Role"
                 android:inputType="textPersonName"
                 android:padding="12dp"

@@ -15,6 +15,9 @@
         android:theme="@style/Theme.ShoppingApp"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".Admin.TotalCommission"
+            android:exported="false" />
+        <activity
             android:name=".Admin.AdminSales"
             android:exported="false" />
         <activity

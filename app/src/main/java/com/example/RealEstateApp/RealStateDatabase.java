@@ -521,4 +521,17 @@ public class RealStateDatabase extends SQLiteOpenHelper {
         db.close();
     }
 
+    public double calculateSumOfAcceptedCommissions() {
+        double sum = 0;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query(TB_SALES, new String[]{TB_CLM_SALES_COMMISSION}, TB_CLM_SALES_STATUS + "=?", new String[]{"accepted"}, null, null, null);
+        if (cursor != null) {
+            while (cursor.moveToNext()) {
+                sum += cursor.getDouble(cursor.getColumnIndex(TB_CLM_SALES_COMMISSION));
+            }
+            cursor.close();
+        }
+        return sum;
+    }
+
 }

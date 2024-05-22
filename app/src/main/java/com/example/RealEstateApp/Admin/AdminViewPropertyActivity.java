@@ -37,7 +37,6 @@ public class AdminViewPropertyActivity extends AppCompatActivity {
     private Uri imageUri;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,7 +80,7 @@ public class AdminViewPropertyActivity extends AppCompatActivity {
                         startActivity(intent3);
                         break;
                     case R.id.Benefits:
-                        Intent intent4 = new Intent(getBaseContext(), ProfileActivity.class);
+                        Intent intent4 = new Intent(getBaseContext(), TotalCommission.class);
                         startActivity(intent4);
                         break;
                 }
@@ -102,11 +101,7 @@ public class AdminViewPropertyActivity extends AppCompatActivity {
         });
 
 
-
     }
-
-
-
 
 
 }

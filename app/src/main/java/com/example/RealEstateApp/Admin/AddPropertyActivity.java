@@ -24,7 +24,7 @@ public class AddPropertyActivity extends AppCompatActivity {
 
     EditText et_property_name_add, et_property_description_add, et_property_location_add, et_property_type_add, et_property_price_add;
 
-    Spinner sp_property_category;
+    Spinner sp_property_category, sp_property_type;
 
     private static final int PICK_IMAGE_REQUEST = 1;
     private Uri imageUri;
@@ -36,13 +36,18 @@ public class AddPropertyActivity extends AppCompatActivity {
         et_property_name_add = findViewById(R.id.et_property_name_add);
         et_property_description_add = findViewById(R.id.et_property_description_add);
         et_property_location_add = findViewById(R.id.et_property_location_add);
-        et_property_type_add = findViewById(R.id.et_property_type_add);
+        //     et_property_type_add = findViewById(R.id.et_property_type_add);
         et_property_price_add = findViewById(R.id.et_property_price_add);
 
         sp_property_category = findViewById(R.id.sp_property_category);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.property_categories_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sp_property_category.setAdapter(adapter);
+
+        sp_property_type = findViewById(R.id.sp_property_type_add);
+        ArrayAdapter<CharSequence> adaptertype = ArrayAdapter.createFromResource(this, R.array.type, android.R.layout.simple_spinner_item);
+        adaptertype.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        sp_property_type.setAdapter(adaptertype);
 
 
         Button pickImageButton = findViewById(R.id.btn_pick_image);
@@ -76,8 +81,8 @@ public class AddPropertyActivity extends AppCompatActivity {
                 } else {
                     c++;
                 }
-                if (et_property_type_add.getText().toString().isEmpty()) {
-                    et_property_price_add.setError("Please Enter Your price");
+                if (sp_property_type.getSelectedItem() != null) {
+                    System.out.println("h");
                 } else {
                     c++;
                 }
@@ -94,14 +99,15 @@ public class AddPropertyActivity extends AppCompatActivity {
                 }
 //    public Property(String image, String name, double price, String location, String description, double discount, String type) {
 
-                if (c == 5) {
+                if (c == 4) {
+                    String selectedType = sp_property_type.getSelectedItem().toString();
                     Property property = new Property(
                             String.valueOf(R.drawable.house_2),
                             et_property_name_add.getText().toString(),
                             Double.parseDouble(et_property_price_add.getText().toString()),
                             et_property_location_add.getText().toString(),
                             et_property_description_add.getText().toString(),
-                            0, et_property_type_add.getText().toString());
+                            0, selectedType);
                     String tableName = "NaN";
                     if (sp_property_category.getSelectedItem().toString().equals("Villa")) {
                         tableName = "villa";
