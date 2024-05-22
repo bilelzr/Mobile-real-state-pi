@@ -59,6 +59,7 @@ public class RealStateDatabase extends SQLiteOpenHelper {
     public static final String TB_CLM_SALES_CHECK_NUMBER = "check_number";
     public static final String TB_CLM_SALES_PAYMENT_METHOD = "payment_method";
     public static final String TB_CLM_SALES_COMMISSION = "commission";
+    public static final String TB_CLM_SALES_STATUS = "satuts";
 
     public RealStateDatabase(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
@@ -81,7 +82,7 @@ public class RealStateDatabase extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("CREATE TABLE " + TB_SALES + " (" + TB_CLM_ID + " INTEGER PRIMARY KEY AUTOINCREMENT , " + TB_CLM_IMAGE + " INTEGER , " +
                 TB_CLM_NAME + " TEXT , " + TB_CLM_PRICE + " REAL , " + TB_CLM_LOCATION + " TEXT , " + TB_CLM_TYPE + " TEXT , "
                 + TB_CLM_DATE + " TEXT , " + TB_CLM_USER_FK + " INTEGER , "
-                + TB_CLM_SALES_PAYMENT_METHOD + " TEXT , " + TB_CLM_SALES_CHECK_NUMBER + " INTEGER , " + TB_CLM_SALES_COMMISSION + " REAL  );");
+                + TB_CLM_SALES_PAYMENT_METHOD + " TEXT , " + TB_CLM_SALES_CHECK_NUMBER + " INTEGER , " + TB_CLM_SALES_COMMISSION + " REAL , " + TB_CLM_SALES_STATUS + " TEXT );");
 
         Log.d("RealStateDatabase", "Tables created successfully.");
 
@@ -272,6 +273,7 @@ public class RealStateDatabase extends SQLiteOpenHelper {
         values.put(TB_CLM_SALES_CHECK_NUMBER, checkNumber);
         values.put(TB_CLM_SALES_CHECK_NUMBER, checkNumber);
         values.put(TB_CLM_SALES_COMMISSION, commission);
+        values.put(TB_CLM_SALES_STATUS, "OPEN");
         long res = db.insert(TB_SALES, null, values);
         db.close();
         return res != -1;
@@ -309,6 +311,7 @@ public class RealStateDatabase extends SQLiteOpenHelper {
 
         if (cursor.moveToFirst() && cursor != null) {
             do {
+                @SuppressLint("Range") int id = cursor.getInt(cursor.getColumnIndex(TB_CLM_ID));
                 @SuppressLint("Range") String image = cursor.getString(cursor.getColumnIndex(TB_CLM_IMAGE));
                 @SuppressLint("Range") String name = cursor.getString(cursor.getColumnIndex(TB_CLM_NAME));
                 @SuppressLint("Range") Double price = cursor.getDouble(cursor.getColumnIndex(TB_CLM_PRICE));
@@ -317,8 +320,9 @@ public class RealStateDatabase extends SQLiteOpenHelper {
                 @SuppressLint("Range") String date = cursor.getString(cursor.getColumnIndex(TB_CLM_DATE));
                 @SuppressLint("Range") String paymentType = cursor.getString(cursor.getColumnIndex(TB_CLM_SALES_PAYMENT_METHOD));
                 @SuppressLint("Range") Double commission = cursor.getDouble(cursor.getColumnIndex(TB_CLM_SALES_COMMISSION));
+                @SuppressLint("Range") String status = cursor.getString(cursor.getColumnIndex(TB_CLM_SALES_STATUS));
                 Property p = new Property(image, name, price, location, type);
-                Sales sales = new Sales(p, date,paymentType,commission.floatValue());
+                Sales sales = new Sales(id,p, date,paymentType,commission.floatValue(),status);
                 salesArrayList.add(sales);
             } while (cursor.moveToNext());
             cursor.close();
@@ -333,6 +337,7 @@ public class RealStateDatabase extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery("SELECT * FROM " + TB_SALES, null);
         if (cursor.moveToFirst() && cursor != null) {
             do {
+                @SuppressLint("Range") int id = cursor.getInt(cursor.getColumnIndex(TB_CLM_ID));
                 @SuppressLint("Range") String image = cursor.getString(cursor.getColumnIndex(TB_CLM_IMAGE));
                 @SuppressLint("Range") String name = cursor.getString(cursor.getColumnIndex(TB_CLM_NAME));
                 @SuppressLint("Range") Double price = cursor.getDouble(cursor.getColumnIndex(TB_CLM_PRICE));
@@ -341,9 +346,10 @@ public class RealStateDatabase extends SQLiteOpenHelper {
                 @SuppressLint("Range") String date = cursor.getString(cursor.getColumnIndex(TB_CLM_DATE));
                 @SuppressLint("Range") String paymentType = cursor.getString(cursor.getColumnIndex(TB_CLM_SALES_PAYMENT_METHOD));
                 @SuppressLint("Range") Double commission = cursor.getDouble(cursor.getColumnIndex(TB_CLM_SALES_COMMISSION));
+                @SuppressLint("Range") String status = cursor.getString(cursor.getColumnIndex(TB_CLM_SALES_STATUS));
 
                 Property p = new Property(image, name, price, location, type);
-                Sales sales = new Sales(p, date,paymentType,commission.floatValue());
+                Sales sales = new Sales(id,p, date,paymentType,commission.floatValue(),status);
                 salesArrayList.add(sales);
             } while (cursor.moveToNext());
             cursor.close();
@@ -488,6 +494,31 @@ public class RealStateDatabase extends SQLiteOpenHelper {
         }
 
         return products;
+    }
+
+    public void updateSaleStatusToRejected(int saleId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(TB_CLM_SALES_STATUS, "rejected");
+
+        String whereClause = TB_CLM_ID + " = ?";
+        String[] whereArgs = {String.valueOf(saleId)};
+
+        db.update(TB_SALES, values, whereClause, whereArgs);
+        db.close();
+
+    }
+
+    public void updateSaleStatusToAccepted(int saleId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(TB_CLM_SALES_STATUS, "accepted");
+
+        String whereClause = TB_CLM_ID + " = ?";
+        String[] whereArgs = {String.valueOf(saleId)};
+
+        db.update(TB_SALES, values, whereClause, whereArgs);
+        db.close();
     }
 
 }

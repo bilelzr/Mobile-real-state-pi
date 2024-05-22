@@ -32,7 +32,7 @@ public class AdminSales extends AppCompatActivity {
 
         ArrayList<Sales> sales = new ArrayList<>();
         sales = db.getAllSales();
-        pa = new SalesAdminAdapter(sales, this);
+        pa = new SalesAdminAdapter(sales, this,db);
         pa.notifyDataSetChanged();
         lv.setAdapter(pa);
 

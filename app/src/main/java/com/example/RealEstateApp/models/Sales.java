@@ -1,6 +1,8 @@
 package com.example.RealEstateApp.models;
 
 public class Sales {
+
+    private int id;
     private Property property;
     private String Date;
 
@@ -11,6 +13,8 @@ public class Sales {
     private String checkNumber;
 
     private float commission;
+
+    private String status;
 
 
     public Sales(Property property, String date, int user_fk) {
@@ -44,6 +48,15 @@ public class Sales {
         Date = date;
         this.commission = commission;
         this.payementMethod = payementMethod;
+    }
+
+    public Sales(int id, Property property, String date, String payementMethod, float commission, String status) {
+        this.id = id;
+        this.property = property;
+        Date = date;
+        this.commission = commission;
+        this.payementMethod = payementMethod;
+        this.status = status;
     }
 
     public int getUser_fk() {
@@ -93,5 +106,23 @@ public class Sales {
 
     public void setCommission(float commission) {
         this.commission = commission;
+    }
+
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
