@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioGroup;
 import android.widget.RatingBar;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -36,6 +37,9 @@ public class DisplayPropertyActivity extends AppCompatActivity {
     Button add_to_cart;
     EditText display_get_datetime;
     SharedPreferences shp_id;
+
+    RadioGroup radioGroupPayment;
+    EditText editTextCheckNumber;
     double priceAfter;
 
     RealStateDatabase db;
@@ -56,7 +60,8 @@ public class DisplayPropertyActivity extends AppCompatActivity {
         Property_description = findViewById(R.id.display_tv_description);
         display_get_datetime = findViewById(R.id.display_get_datetime);
         add_to_cart = findViewById(R.id.display_btn_cart);
-
+        radioGroupPayment = findViewById(R.id.radioGroup_payment);
+        editTextCheckNumber = findViewById(R.id.editText_check_number);
 
         int product_id;
         String table_name;
@@ -92,6 +97,19 @@ public class DisplayPropertyActivity extends AppCompatActivity {
         Property_description.setText(p.getDescription());
         Property_type.setText(p.getType());
 
+
+        radioGroupPayment.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if (checkedId == R.id.radio_check) {
+                    editTextCheckNumber.setVisibility(View.VISIBLE);
+                } else {
+                    editTextCheckNumber.setVisibility(View.GONE);
+                }
+            }
+        });
+
+
         add_to_cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -116,7 +134,7 @@ public class DisplayPropertyActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.dismiss();
-                        db.insertNewAppointment(propertyReservation, dateTime, user_id);
+                        db.insertNewSales(propertyReservation, dateTime, user_id);
                         Toast.makeText(DisplayPropertyActivity.this, "Appointement created Successfully", Toast.LENGTH_SHORT).show();
                         finish();
                     }

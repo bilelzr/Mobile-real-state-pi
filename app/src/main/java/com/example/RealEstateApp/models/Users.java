@@ -12,6 +12,8 @@ public class Users {
 
     private String role;
 
+    private Boolean status;
+
 
     public Users() {
     }
@@ -25,6 +27,18 @@ public class Users {
         this.email = email;
         this.phone = phone;
         this.role = role;
+    }
+
+    public Users(int id, String userName, String fullName, String userImage, String userPassword, String email, String phone, String role, Boolean status) {
+        this.id = id;
+        this.userName = userName;
+        this.fullName = fullName;
+        this.userImage = userImage;
+        this.userPassword = userPassword;
+        this.email = email;
+        this.phone = phone;
+        this.role = role;
+        this.status = status;
     }
 
     public Users(int id, String userName, String fullName, String userImage, String userPassword, String email, String phone) {
@@ -117,5 +131,13 @@ public class Users {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
     }
 }

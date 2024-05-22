@@ -7,35 +7,33 @@ import android.widget.ListView;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.RealEstateApp.models.Appointment;
-
 import java.util.ArrayList;
 
-public class AppointmentActivity extends AppCompatActivity {
+public class SalesActivity extends AppCompatActivity {
 
     ListView lv;
-    AppointmentAdapter pa;
+    com.example.RealEstateApp.Sales pa;
     RealStateDatabase db;
     SharedPreferences shp_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_appointment);
+        setContentView(R.layout.activity_sales);
 
         lv = findViewById(R.id.lv_appointments);
 
         db = new RealStateDatabase(this);
 
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle("Appointments");
+        actionBar.setTitle("Sales");
         shp_id = getSharedPreferences("Preferences_id", MODE_PRIVATE);
 
         int user_id = shp_id.getInt("user_id", 0);
 
-        ArrayList<Appointment> Appointment = new ArrayList<>();
-        Appointment = db.getAllAppointmentsByUser(user_id);
-        pa = new AppointmentAdapter(Appointment, this);
+        ArrayList<com.example.RealEstateApp.models.Sales> Sales = new ArrayList<>();
+        Sales = db.getAllSalesByUser(user_id);
+        pa = new com.example.RealEstateApp.Sales(Sales, this);
         pa.notifyDataSetChanged();
         lv.setAdapter(pa);
 

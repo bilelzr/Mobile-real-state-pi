@@ -194,11 +194,48 @@
 
             </LinearLayout>
 
+            <RadioGroup
+                android:id="@+id/radioGroup_payment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="16dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp">
+
+                <RadioButton
+                    android:id="@+id/radio_visa"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Visa"
+                    android:textSize="18sp"
+                    android:textColor="@color/black"/>
+
+                <RadioButton
+                    android:id="@+id/radio_check"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Check"
+                    android:textSize="18sp"
+                    android:textColor="@color/black"/>
+
+            </RadioGroup>
+
+            <EditText
+                android:id="@+id/editText_check_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter Check Number"
+                android:visibility="gone"
+                android:layout_marginTop="8dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"/>
+
             <Button
                 android:id="@+id/display_btn_cart"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Add to cart"
+                android:text="Get This Property"
                 android:layout_margin="16dp"
                 android:backgroundTint="@color/bg_button"
                 android:textSize="20sp"

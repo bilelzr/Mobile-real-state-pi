@@ -1,4 +1,4 @@
-package com.example.RealEstateApp;
+package com.example.RealEstateApp.Admin;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -9,28 +9,29 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.RealEstateApp.models.Appointment;
+import com.example.RealEstateApp.R;
+import com.example.RealEstateApp.models.Sales;
 
 import java.util.ArrayList;
 
-public class AppointmentAdapter extends BaseAdapter {
+public class SalesAdminAdapter extends BaseAdapter {
 
-    ArrayList<Appointment> appointments;
+    ArrayList<Sales> sales;
     Context context;
 
-    public AppointmentAdapter(ArrayList<Appointment> appointments, Context context) {
-        this.appointments = appointments;
+    public SalesAdminAdapter(ArrayList<Sales> sales, Context context) {
+        this.sales = sales;
         this.context = context;
     }
 
     @Override
     public int getCount() {
-        return appointments.size();
+        return sales.size();
     }
 
     @Override
-    public Appointment getItem(int i) {
-        return appointments.get(i);
+    public Sales getItem(int i) {
+        return sales.get(i);
     }
 
     @Override
@@ -44,7 +45,7 @@ public class AppointmentAdapter extends BaseAdapter {
 
         View v = view;
         if (v == null) {
-            v = LayoutInflater.from(context).inflate(R.layout.custome_appointment_products, null, false);
+            v = LayoutInflater.from(context).inflate(R.layout.custome_admin_sales, null, false);
         }
 
         ImageView img = (ImageView) v.findViewById(R.id.img_property_appointment);
@@ -53,16 +54,16 @@ public class AppointmentAdapter extends BaseAdapter {
         TextView tv_type = v.findViewById(R.id.tv_type_property);
         TextView tv_dateApointment = v.findViewById(R.id.tv_date_appointment_property);
 
-        Appointment appointment = getItem(i);
-        if (Integer.parseInt(appointment.getProperty().getImage()) != 0) {
-            img.setImageResource(Integer.parseInt(appointment.getProperty().getImage()));
+        Sales sales = getItem(i);
+        if (Integer.parseInt(sales.getProperty().getImage()) != 0) {
+            img.setImageResource(Integer.parseInt(sales.getProperty().getImage()));
         } else {
             img.setImageResource(R.drawable.products);
         }
-        tv_name.setText(appointment.getProperty().getName());
-        tv_price.setText(appointment.getProperty().getPrice() + "DT");
-        tv_type.setText(appointment.getProperty().getType());
-        tv_dateApointment.setText(appointment.getDate());
+        tv_name.setText(sales.getProperty().getName());
+        tv_price.setText(sales.getProperty().getPrice() + "DT");
+        tv_type.setText(sales.getProperty().getType());
+        tv_dateApointment.setText(sales.getDate());
         return v;
     }
 }

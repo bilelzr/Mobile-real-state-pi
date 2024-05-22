@@ -9,9 +9,9 @@
         android:icon="@drawable/ic_baseline_person_24"
         android:title="profile"/>
     <item
-        android:id="@+id/appointments"
+        android:id="@+id/sales"
         android:icon="@drawable/ic_baseline_shopping_cart_24"
-        android:title="Appointment"/>
+        android:title="Sales"/>
     <item
         android:id="@+id/Benefits"
         android:icon="@drawable/ic_baseline_shopping_basket_24"

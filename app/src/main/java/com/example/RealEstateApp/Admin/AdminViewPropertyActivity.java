@@ -12,7 +12,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.RealEstateApp.AppointmentActivity;
 import com.example.RealEstateApp.ProfileActivity;
 import com.example.RealEstateApp.R;
 import com.example.RealEstateApp.RealStateDatabase;
@@ -77,8 +76,8 @@ public class AdminViewPropertyActivity extends AppCompatActivity {
                         Intent intent2 = new Intent(getBaseContext(), ProfileActivity.class);
                         startActivity(intent2);
                         break;
-                    case R.id.appointments:
-                        Intent intent3 = new Intent(getBaseContext(), AppointmentActivity.class);
+                    case R.id.sales:
+                        Intent intent3 = new Intent(getBaseContext(), AdminSales.class);
                         startActivity(intent3);
                         break;
                     case R.id.Benefits:

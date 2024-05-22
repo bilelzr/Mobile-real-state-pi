@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/bg_layout"
-    tools:context=".AppointmentActivity">
+    tools:context=".Admin.AdminSales">
 
     <TextView
         android:layout_width="match_parent"
@@ -14,7 +14,7 @@
         android:drawableLeft="@drawable/deal3"
         android:drawablePadding="10dp"
         android:padding="10dp"
-        android:text="Appointments"
+        android:text="Sales"
         android:textColor="@color/white"
         android:textSize="30dp" />
 
@@ -25,3 +25,5 @@
 
 
 </LinearLayout>
+
+

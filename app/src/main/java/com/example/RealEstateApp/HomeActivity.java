@@ -121,7 +121,7 @@ public class HomeActivity extends AppCompatActivity {
                         startActivity(intent3);
                         break;
                     case R.id.basket:
-                        Intent intent4 = new Intent(getBaseContext(), AppointmentActivity.class);
+                        Intent intent4 = new Intent(getBaseContext(), SalesActivity.class);
                         startActivity(intent4);
                         break;
                 }

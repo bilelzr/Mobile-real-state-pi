@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import com.example.RealEstateApp.models.Appointment;
+import com.example.RealEstateApp.models.Sales;
 import com.example.RealEstateApp.models.Property;
 import com.example.RealEstateApp.models.Users;
 import com.google.gson.Gson;
@@ -33,7 +33,7 @@ public class RealStateDatabase extends SQLiteOpenHelper {
     public static final String TB_VILLA = "villa";
     public static final String TB_FIRMA = "firma";
     public static final String TB_USERS = "users";
-    public static final String TB_APPOINTMENTS = "apointment";
+    public static final String TB_SALES = "sales";
     public static final String TB_PROPERTY_DISCOUNT = "product_discount";
 
     public static final String TB_CLM_ID = "id";
@@ -55,6 +55,9 @@ public class RealStateDatabase extends SQLiteOpenHelper {
     public static final String TB_CLM_USER_PHONE = "user_phone";
     public static final String TB_CLM_USER_IMAGE = "user_image";
     public static final String TB_CLM_USER_ROLE = "user_role";
+    public static final String TB_CLM_USER_STATUS = "user_status";
+    public static final String TB_CLM_SALES_CHECK_NUMBER = "check_number";
+    public static final String TB_CLM_SALES_PAYMENT_METHOD = "payment_method";
 
     public RealStateDatabase(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
@@ -70,14 +73,45 @@ public class RealStateDatabase extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(createTables(TB_PROPERTY_DISCOUNT));
 
         sqLiteDatabase.execSQL("CREATE TABLE " + TB_USERS + " (" + TB_CLM_USER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT , " + TB_CLM_USER_NAME + " TEXT UNIQUE , " +
-                TB_CLM_USER_FULL_NAME + " TEXT , " + TB_CLM_USER_PASSWORD + " TEXT , " + TB_CLM_USER_EMAIL + " TEXT UNIQUE , " + TB_CLM_USER_PHONE + " TEXT , " + TB_CLM_USER_IMAGE + " TEXT , " + TB_CLM_USER_ROLE + " TEXT );");
+                TB_CLM_USER_FULL_NAME + " TEXT , " + TB_CLM_USER_PASSWORD + " TEXT , " + TB_CLM_USER_EMAIL + " TEXT UNIQUE , " + TB_CLM_USER_PHONE + " TEXT , " +
+                TB_CLM_USER_IMAGE + " TEXT , " + TB_CLM_USER_ROLE + " TEXT , " + TB_CLM_USER_STATUS + " Boolean  );");
 
 
-        sqLiteDatabase.execSQL("CREATE TABLE " + TB_APPOINTMENTS + " (" + TB_CLM_ID + " INTEGER PRIMARY KEY AUTOINCREMENT , " + TB_CLM_IMAGE + " INTEGER , " +
-                TB_CLM_NAME + " TEXT , " + TB_CLM_PRICE + " REAL , " + TB_CLM_LOCATION + " TEXT , " + TB_CLM_TYPE + " TEXT , " + TB_CLM_DATE + " TEXT , " + TB_CLM_USER_FK + " INTEGER);");
+        sqLiteDatabase.execSQL("CREATE TABLE " + TB_SALES + " (" + TB_CLM_ID + " INTEGER PRIMARY KEY AUTOINCREMENT , " + TB_CLM_IMAGE + " INTEGER , " +
+                TB_CLM_NAME + " TEXT , " + TB_CLM_PRICE + " REAL , " + TB_CLM_LOCATION + " TEXT , " + TB_CLM_TYPE + " TEXT , "
+                + TB_CLM_DATE + " TEXT , " + TB_CLM_USER_FK + " INTEGER , " + TB_CLM_SALES_PAYMENT_METHOD + " TEXT , " +TB_CLM_SALES_CHECK_NUMBER + " INTEGER );");
 
         Log.d("RealStateDatabase", "Tables created successfully.");
 
+
+        Users defaultUser = new Users();
+        defaultUser.setEmail("admin@admin.com");
+        defaultUser.setFullName("admin");
+        defaultUser.setUserName("admin");
+        defaultUser.setPhone("55545614");
+        defaultUser.setRole("ADMIN");
+        defaultUser.setUserPassword("admin");
+        defaultUser.setStatus(true);
+
+        String insertUserSQL = "INSERT INTO " + TB_USERS + " ("
+                + TB_CLM_USER_NAME + ", "
+                + TB_CLM_USER_FULL_NAME + ", "
+                + TB_CLM_USER_PASSWORD + ", "
+                + TB_CLM_USER_EMAIL + ", "
+                + TB_CLM_USER_PHONE + ", "
+                + TB_CLM_USER_IMAGE + ", "
+                + TB_CLM_USER_ROLE + ", "
+                + TB_CLM_USER_STATUS + ") VALUES ('"
+                + defaultUser.getUserName() + "', '"
+                + defaultUser.getFullName() + "', '"
+                + defaultUser.getUserPassword() + "', '"
+                + defaultUser.getEmail() + "', '"
+                + defaultUser.getPhone() + "', '', '"
+                + defaultUser.getRole() + "', "
+                + (defaultUser.getStatus() ? 1 : 0) + ");";
+
+        sqLiteDatabase.execSQL(insertUserSQL);
+        Log.d("RealStateDatabase", "Default user inserted successfully.");
     }
 
     @Override
@@ -222,7 +256,7 @@ public class RealStateDatabase extends SQLiteOpenHelper {
         return result > 0;
     }
 
-    public boolean insertNewAppointment(Property p, String date, int userFk) {
+    public boolean insertNewSales(Property p, String date, int userFk) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
 
@@ -234,12 +268,12 @@ public class RealStateDatabase extends SQLiteOpenHelper {
         values.put(TB_CLM_DATE, date);
         values.put(TB_CLM_USER_FK, userFk);
 
-        long res = db.insert(TB_APPOINTMENTS, null, values);
+        long res = db.insert(TB_SALES, null, values);
         db.close();
         return res != -1;
     }
 
-    public ArrayList<Appointment> getAllAppointments() {
+  /*  public ArrayList<Appointment> getAllAppointments() {
         ArrayList<Appointment> appointmentArrayList = new ArrayList<>();
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM " + TB_APPOINTMENTS + "", null);
@@ -261,13 +295,13 @@ public class RealStateDatabase extends SQLiteOpenHelper {
         }
         db.close();
         return appointmentArrayList;
-    }
+    }*/
 
 
-    public ArrayList<Appointment> getAllAppointmentsByUser(int userFk) {
-        ArrayList<Appointment> appointmentArrayList = new ArrayList<>();
+    public ArrayList<Sales> getAllSalesByUser(int userFk) {
+        ArrayList<Sales> salesArrayList = new ArrayList<>();
         SQLiteDatabase db = getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM " + TB_APPOINTMENTS + " WHERE " + TB_CLM_USER_FK + " =?", new String[]{String.valueOf(userFk)});
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TB_SALES + " WHERE " + TB_CLM_USER_FK + " =?", new String[]{String.valueOf(userFk)});
 
         if (cursor.moveToFirst() && cursor != null) {
             do {
@@ -279,13 +313,36 @@ public class RealStateDatabase extends SQLiteOpenHelper {
                 @SuppressLint("Range") String date = cursor.getString(cursor.getColumnIndex(TB_CLM_DATE));
 
                 Property p = new Property(image, name, price, location, type);
-                Appointment appointment = new Appointment(p, date);
-                appointmentArrayList.add(appointment);
+                Sales sales = new Sales(p, date);
+                salesArrayList.add(sales);
             } while (cursor.moveToNext());
             cursor.close();
         }
         db.close();
-        return appointmentArrayList;
+        return salesArrayList;
+    }
+
+    public ArrayList<Sales> getAllSales() {
+        ArrayList<Sales> salesArrayList = new ArrayList<>();
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TB_SALES, null);
+        if (cursor.moveToFirst() && cursor != null) {
+            do {
+                @SuppressLint("Range") String image = cursor.getString(cursor.getColumnIndex(TB_CLM_IMAGE));
+                @SuppressLint("Range") String name = cursor.getString(cursor.getColumnIndex(TB_CLM_NAME));
+                @SuppressLint("Range") Double price = cursor.getDouble(cursor.getColumnIndex(TB_CLM_PRICE));
+                @SuppressLint("Range") String location = cursor.getString(cursor.getColumnIndex(TB_CLM_LOCATION));
+                @SuppressLint("Range") String type = cursor.getString(cursor.getColumnIndex(TB_CLM_TYPE));
+                @SuppressLint("Range") String date = cursor.getString(cursor.getColumnIndex(TB_CLM_DATE));
+
+                Property p = new Property(image, name, price, location, type);
+                Sales sales = new Sales(p, date);
+                salesArrayList.add(sales);
+            } while (cursor.moveToNext());
+            cursor.close();
+        }
+        db.close();
+        return salesArrayList;
     }
 
     public boolean insertUser(Users user) {
@@ -299,7 +356,9 @@ public class RealStateDatabase extends SQLiteOpenHelper {
         values.put(TB_CLM_USER_PHONE, user.getPhone());
         values.put(TB_CLM_USER_IMAGE, user.getUserImage());
         values.put(TB_CLM_USER_ROLE, user.getRole());
-
+        if (user.getRole().equals("ADMIN")) {
+            values.put(TB_CLM_USER_STATUS, false);
+        }
         long res = db.insert(TB_USERS, null, values);
         db.close();
         return res != -1;
