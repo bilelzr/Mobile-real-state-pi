@@ -21,13 +21,13 @@
                 android:id="@+id/iv_card_products"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
-                android:src="@drawable/products"/>
+                android:src="@drawable/house"/>
 
             <TextView
                 android:id="@+id/tv_name_card_products"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Shoes"
+                android:text="house"
                 android:textSize="24dp"
                 android:gravity="center"
                 android:textStyle="bold"/>
@@ -42,7 +42,7 @@
                     android:id="@+id/tv_price_card_products"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="20$"
+                    android:text="20 DT"
                     android:textColor="#BFBFBF"
                     android:textSize="20dp"/>
 
@@ -51,7 +51,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingStart="20dp"
-                    android:text="20$"
+                    android:text="20 DT"
                     android:textColor="@color/black"
                     android:textSize="20dp"/>
 
@@ -61,7 +61,7 @@
                 android:id="@+id/tv_brand_card_products"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Brand : AD@S"
+                android:text="Place : AD@S"
                 android:textSize="20dp"/>
 
             <LinearLayout
@@ -73,7 +73,7 @@
                     android:id="@+id/tv_pieces_card_products"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Pieces : "
+                    android:text="Price : "
                     android:textSize="20dp"/>
 
 

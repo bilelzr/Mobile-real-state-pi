@@ -45,7 +45,7 @@ public class PropertyListAdminAdapter extends BaseAdapter {
 
         View v = view;
         if (v == null) {
-            v = LayoutInflater.from(context).inflate(R.layout.custom_prodcut_display, null, false);
+            v = LayoutInflater.from(context).inflate(R.layout.custom_property_display, null, false);
         }
 
         ImageView img = (ImageView) v.findViewById(R.id.img_property_appointment);

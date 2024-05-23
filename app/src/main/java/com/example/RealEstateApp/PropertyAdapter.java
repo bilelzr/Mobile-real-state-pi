@@ -36,7 +36,7 @@ public class PropertyAdapter extends RecyclerView.Adapter<PropertyAdapter.Proper
     @NonNull
     @Override
     public PropertyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.custome_card_products, null, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.custome_card_property, null, false);
         PropertyViewHolder pvh = new PropertyViewHolder(v);
         return pvh;
     }

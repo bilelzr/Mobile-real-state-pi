@@ -23,7 +23,7 @@
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_gravity="center"
-                android:src="@drawable/teshert"/>
+                android:src="@drawable/house"/>
 
             <TextView
                 android:id="@+id/tv_name_card_home"
@@ -43,7 +43,7 @@
                     android:id="@+id/tv_price_card_home"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/price_del"
+                    android:text="Price"
                     android:textSize="20sp"
                     android:paddingTop="5dp"
                     android:paddingEnd="10dp"
@@ -54,7 +54,7 @@
                     android:id="@+id/tv_priceafter_card_home"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="120$"
+                    android:text="120 DT"
                     android:textSize="20sp"
                     android:paddingTop="5dp"
                     android:paddingStart="10dp"

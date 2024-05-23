@@ -44,9 +44,9 @@ public class HomeAdabter extends RecyclerView.Adapter<HomeAdabter.ProductInHomeV
             holder.img.setImageResource(R.drawable.products);
         }
         holder.name.setText(p.getName());
-        holder.price.setText(p.getPrice()+"$");
+        holder.price.setText(p.getPrice()+" DT");
         if(p.getDiscount()>0){
-            holder.priceAfter.setText(p.getPrice()-(p.getPrice()*(p.getDiscount()/100))+"$");
+            holder.priceAfter.setText(p.getPrice()-(p.getPrice()*(p.getDiscount()/100))+" DT");
             holder.price.setPaintFlags(holder.price.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);//وضع خط علي السعر القديم
             holder.price.setTextColor(Color.parseColor("#BFBFBF"));
         }else{
@@ -54,7 +54,7 @@ public class HomeAdabter extends RecyclerView.Adapter<HomeAdabter.ProductInHomeV
             holder.price.setTextColor(Color.parseColor("#000000"));
         }
 
-        holder.img.setTag(position+1); //اوبجكت مخفي لكي اخزن product_id
+        holder.img.setTag(position+1);
     }
 
     @Override
