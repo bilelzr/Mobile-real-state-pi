@@ -11,18 +11,14 @@ import androidx.cardview.widget.CardView;
 
 public class MainActivity extends AppCompatActivity {
 
-    CardView house_card, book_card, beauty_card, villa_card, game_card, homeCooker_card, firma_card, apartment_card, sports_card, carTools_card;
-    TextView tv_house, tv_book, tv_beauty, tv_villa, tv_game, tv_home, tv_firma, tv_apartment, tv_sports, tv_car;
-    public static final String FASHION_KEY = "fashion_key";
-    public static final String BOOK_KEY = "book_key";
-    public static final String BEAUTY_KEY = "beauty_key";
-    public static final String ELECTRICS_KEY = "electrics_key";
-    public static final String GAME_KEY = "game_key";
-    public static final String HOME_KEY = "home_key";
-    public static final String LAPTOP_KEY = "laptop_key";
-    public static final String MOBILE_KEY = "mobile_key";
-    public static final String SPORTS_KEY = "sports_key";
-    public static final String CAR_KEY = "car_key";
+    CardView house_card, villa_card, firma_card, apartment_card;
+    TextView tv_house, tv_villa, tv_firma, tv_apartment;
+    public static final String HOUSE_KEY = "home_key";
+    public static final String VILLA_KEY = "villa_key";
+    public static final String APART_KEY = "apart_key";
+    public static final String FIRMA_KEY = "firma_key";
+
+
     public static String name_data = "";
 
     RealStateDatabase db;
@@ -55,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 name_data = tv_house.getText().toString();
                 Intent intent = new Intent(getBaseContext(), PropertyCardActivity.class);
-                intent.putExtra(FASHION_KEY, tv_house.getText().toString());
+                intent.putExtra(HOUSE_KEY, tv_house.getText().toString());
                 startActivity(intent);
             }
         });
@@ -66,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 name_data = tv_villa.getText().toString();
                 Intent intent = new Intent(getBaseContext(), PropertyCardActivity.class);
-                intent.putExtra(ELECTRICS_KEY, tv_villa.getText().toString());
+                intent.putExtra(VILLA_KEY, tv_villa.getText().toString());
                 startActivity(intent);
             }
         });
@@ -77,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 name_data = tv_firma.getText().toString();
                 Intent intent = new Intent(getBaseContext(), PropertyCardActivity.class);
-                intent.putExtra(LAPTOP_KEY, tv_firma.getText().toString());
+                intent.putExtra(FIRMA_KEY, tv_firma.getText().toString());
                 startActivity(intent);
             }
         });
@@ -87,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 name_data = tv_apartment.getText().toString();
                 Intent intent = new Intent(getBaseContext(), PropertyCardActivity.class);
-                intent.putExtra(MOBILE_KEY, tv_apartment.getText().toString());
+                intent.putExtra(APART_KEY, tv_apartment.getText().toString());
                 startActivity(intent);
             }
         });

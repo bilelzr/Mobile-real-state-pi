@@ -82,12 +82,12 @@ public class HomeActivity extends AppCompatActivity {
         shp = getSharedPreferences("myPreferences", MODE_PRIVATE);
         shp_id = getSharedPreferences("Preferences_id", MODE_PRIVATE);
 
-        ArrayList<Property> products1 = new ArrayList<>();
+        ArrayList<Property> prop1 = new ArrayList<>();
 
-        products1 = db.getAllProperties(RealStateDatabase.TB_PROPERTY_DISCOUNT);
+        prop1 = db.getAllProperties(RealStateDatabase.TB_PROPERTY_DISCOUNT);
 
 
-        HomeAdabter adapter = new HomeAdabter(products1, new OnRecyclerViewClickListener() {
+        HomeAdabter adapter = new HomeAdabter(prop1, new OnRecyclerViewClickListener() {
             @Override
             public void OnItemClick(int productId) {
                 Intent i = new Intent(getBaseContext(), DisplayPropertyActivity.class);

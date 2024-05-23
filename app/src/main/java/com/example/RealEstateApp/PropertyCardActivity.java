@@ -44,24 +44,24 @@ public class PropertyCardActivity extends AppCompatActivity {
         String name;
         switch (MainActivity.name_data) {
             case "House":
-                name = intent.getStringExtra(MainActivity.FASHION_KEY);
+                name = intent.getStringExtra(MainActivity.HOUSE_KEY);
                 tv_product_name.setText(name);
-                table_name = RealStateDatabase.TB_APARTMENT;
+                table_name = RealStateDatabase.TB_HOUSE;
                 break;
             case "Villa":
-                name = intent.getStringExtra(MainActivity.BOOK_KEY);
+                name = intent.getStringExtra(MainActivity.VILLA_KEY);
                 tv_product_name.setText(name);
-                table_name = RealStateDatabase.TB_APARTMENT;
+                table_name = RealStateDatabase.TB_VILLA;
                 break;
             case "Apartment":
-                name = intent.getStringExtra(MainActivity.BEAUTY_KEY);
+                name = intent.getStringExtra(MainActivity.APART_KEY);
                 tv_product_name.setText(name);
                 table_name = RealStateDatabase.TB_APARTMENT;
                 break;
             case "Firma":
-                name = intent.getStringExtra(MainActivity.ELECTRICS_KEY);
+                name = intent.getStringExtra(MainActivity.FIRMA_KEY);
                 tv_product_name.setText(name);
-                table_name = RealStateDatabase.TB_APARTMENT;
+                table_name = RealStateDatabase.TB_FIRMA;
                 break;
         }
         MainActivity.name_data = "";

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Real Estate</string>
+    <string name="app_name">HelpCasaMobile</string>
     <string name="price_del"><strike>150$</strike></string>
     <string-array name="number">
         <item>1</item>
