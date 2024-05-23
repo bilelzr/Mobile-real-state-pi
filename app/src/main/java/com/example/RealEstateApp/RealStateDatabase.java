@@ -206,7 +206,7 @@ public class RealStateDatabase extends SQLiteOpenHelper {
         return products;
     }
 
-    public Property getProduct(int product_id, String tableName) {
+    public Property getProperty(int product_id, String tableName) {
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM " + tableName + " WHERE " + TB_CLM_ID + " =?", new String[]{String.valueOf(product_id)});
 

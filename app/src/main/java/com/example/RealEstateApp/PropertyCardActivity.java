@@ -85,6 +85,8 @@ public class PropertyCardActivity extends AppCompatActivity {
 
     }
 
+
+    // SEARCH PART
     @SuppressLint("ResourceAsColor")
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.search_menu, menu);

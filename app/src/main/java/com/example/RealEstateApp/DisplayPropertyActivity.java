@@ -77,7 +77,7 @@ public class DisplayPropertyActivity extends AppCompatActivity {
         }
 
         db = new RealStateDatabase(this);
-        Property p = db.getProduct(product_id, table_name);
+        Property p = db.getProperty(product_id, table_name);
 
         if (Integer.parseInt(p.getImage()) != 0)
             property_img.setImageResource(Integer.parseInt(p.getImage()));

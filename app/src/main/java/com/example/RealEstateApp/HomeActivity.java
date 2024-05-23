@@ -43,31 +43,31 @@ public class HomeActivity extends AppCompatActivity {
         flag = false;
         db = new RealStateDatabase(this);
 
-        Property p = new Property(String.valueOf(R.drawable.house_2), "House", 2500, "Zahrouni", "DAR MEZYENA FI ZAHROUNI S+3", 10, "RENT");
+        Property p = new Property(String.valueOf(R.drawable.house_2), "DAR", 2500, "Zahrouni", "DAR MEZYENA FI ZAHROUNI S+3", 10, "RENT");
 
         db.insertProperty(p, RealStateDatabase.TB_HOUSE);
 
         Property p1 = new Property(String.valueOf(R.drawable.house_2), "APARTEMENT", 7600, "Zahrouni", "LOL", 5, "RENT");
         db.insertProperty(p1, RealStateDatabase.TB_APARTMENT);
 
-        Property p2 = new Property(String.valueOf(R.drawable.house_3), "HOUSE", 4900, "Zahrouni", "S+1", 5, "RENT");
+        Property p2 = new Property(String.valueOf(R.drawable.house_3), "DAR2", 4900, "Zahrouni", "S+1", 5, "RENT");
         db.insertProperty(p2, RealStateDatabase.TB_HOUSE);
 
         Property p3 = new Property(String.valueOf(R.drawable.house_4), "FIRMA", 5850, "TUNIS", "S+4", 5, "RENT");
         db.insertProperty(p3, RealStateDatabase.TB_FIRMA);
 
-        Property p4 = new Property(String.valueOf(R.drawable.house_5), "char gaming", 6000, "BEN AROUS", "s+2", 0, "RENT");
+        Property p4 = new Property(String.valueOf(R.drawable.house_5), "DAR3", 6000, "BEN AROUS", "s+2", 0, "RENT");
         db.insertProperty(p4, RealStateDatabase.TB_HOUSE);
 
-        Property p5 = new Property(String.valueOf(R.drawable.house_5), "FIRMA", 800, "SIDI HASSIN", "studio", 0, "SALE");
+        Property p5 = new Property(String.valueOf(R.drawable.house_5), "FIRMA5", 800, "SIDI HASSIN", "studio", 0, "SALE");
         db.insertProperty(p5, RealStateDatabase.TB_FIRMA);
-        Property p6 = new Property(String.valueOf(R.drawable.house_4), "HOUSE", 270, "SIDI HASSIN", "s+1 pas de finision", 0, "SALE");
+        Property p6 = new Property(String.valueOf(R.drawable.house_4), "HOUSE5", 270, "SIDI HASSIN", "s+1 pas de finision", 0, "SALE");
         db.insertProperty(p6, RealStateDatabase.TB_HOUSE);
         Property p7 = new Property(String.valueOf(R.drawable.house_3), "DAR KHLE3A", 210, "SIDI HASSIN", "VILLA 350m", 10, "SALE");
         db.insertProperty(p7, RealStateDatabase.TB_VILLA);
-        Property p8 = new Property(String.valueOf(R.drawable.house_2), "APARTEMENT", 690, "Zahrouni", "apartment s+1", 0, "SALE");
+        Property p8 = new Property(String.valueOf(R.drawable.house_2), "APARTEMENT2", 690, "Zahrouni", "apartment s+1", 0, "SALE");
         db.insertProperty(p8, RealStateDatabase.TB_APARTMENT);
-        Property p9 = new Property(String.valueOf(R.drawable.house_2), "APARTEMENT", 45, "TUNIS", "apartment s+2", 0, "SALE");
+        Property p9 = new Property(String.valueOf(R.drawable.house_2), "APARTEMENT3", 45, "TUNIS", "apartment s+2", 0, "SALE");
         db.insertProperty(p9, RealStateDatabase.TB_APARTMENT);
 /*
         Products p = new Products(15);
